@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+globals/net/bin/*.so
+globals/net/bin/*.dll
+globals/net/bin/*.dylib
