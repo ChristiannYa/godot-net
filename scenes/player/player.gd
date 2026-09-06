@@ -32,6 +32,7 @@ func _physics_process(delta: float):
 func handle_gravity(delta: float):
 	self.velocity.y += -_GRAVITY * delta
 
+var _jump_log_timer := 0.0
 func handle_movement(delta: float):
 	# Get direction that the user wants to move to
 	var inp_dir: Vector2 = Input.get_vector("m_left", "m_right", "m_fwd", "m_back")
@@ -58,6 +59,12 @@ func handle_movement(delta: float):
 	# Handle jump
 	if Input.is_action_just_pressed("m_jump") and self.is_on_floor():
 		self.velocity.y = _M_JUMP_VEL
+		NetClient.send_input("IsJumping", 1)
+	else:
+		self._jump_log_timer += delta
+		if self._jump_log_timer >= 1.0:
+			NetClient.send_input("IsJumping", 0)
+			self._jump_log_timer = 0.0
 
 func handle_mouse_cam(x: float, y: float):	
 	# Yaw
