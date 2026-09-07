@@ -83,22 +83,29 @@ func _m_handle_jump():
 
 func _m_handle_crouch(delta: float):
 	if !self.is_on_floor(): return
+	var prev_height: float = _cur_height
 
 	if Input.is_action_pressed("m_crouch"): 
 		_cur_height -= _M_CROUCH_SPEED * delta
-		NetClient.send_input("IsCrouching", 1)
 	else: 
 		_cur_height += _M_CROUCH_SPEED * delta
 
 	_cur_height = clamp(_cur_height, _M_CROUCH_HEIGHT, _def_height)
-	body_collision.shape.height = _cur_height
-	self.body.mesh.height = _cur_height
 
-	# Push the shape and mesh down so the bottom stays fixed and only the top
-	# appears to compress
-	var ofs: float = -(_def_height - _cur_height) * 0.5
-	body_collision.position.y = ofs
-	self.body.position.y = ofs	
+	if Input.is_action_just_pressed("m_crouch"):
+		NetClient.send_input("IsCrouching", 1)
+	elif Input.is_action_just_released("m_crouch"):
+		NetClient.send_input("IsCrouching", 0)
+
+	if _cur_height != prev_height:
+		body_collision.shape.height = _cur_height
+		self.body.mesh.height = _cur_height
+
+		# Push the shape and mesh down so the bottom stays fixed and only the top
+		# appears to compress
+		var ofs: float = -(_def_height - _cur_height) * 0.5
+		body_collision.position.y = ofs
+		self.body.position.y = ofs	
 
 func _handle_mouse_cam(x: float, y: float):	
 	# Yaw
