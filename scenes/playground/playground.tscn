@@ -85,4 +85,4 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_sgctp")
 
 [node name="Player" parent="." unique_id=1621762335 instance=ExtResource("1_sgctp")]
-transform = Transform3D(0.58939564, 0, 0.8078445, 0, 1, 0, -0.8078445, 0, 0.58939564, 14.106964, 1.4999998, 9.423122)
+transform = Transform3D(0.58939564, 0, 0.8078445, 0, 1, 0, -0.8078445, 0, 0.58939564, 14.106964, 1.4999999, 9.423122)
