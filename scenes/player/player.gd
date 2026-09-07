@@ -15,6 +15,10 @@ const _MOUSE_SENS := 0.003
 const _CAM_PITCH_MIN: float = deg_to_rad(-70.0)
 const _CAM_PITCH_MAX: float = deg_to_rad(70.0)
 
+signal jump_sig
+signal crouch_start_sig
+signal crouch_end_sig
+
 @onready var body: MeshInstance3D = $Body
 @onready var body_collision: CollisionShape3D = $BodyCollision
 @onready var camera_controller: Node3D = $CameraController
@@ -79,7 +83,7 @@ func _m_handle_move_direction(delta: float, move_dir: Vector3):
 func _m_handle_jump():
 	if !(Input.is_action_just_pressed("m_jump") and self.is_on_floor()): return
 	self.velocity.y = _M_JUMP_VEL
-	NetClient.send_input("IsJumping", 1)
+	jump_sig.emit()
 
 func _m_handle_crouch(delta: float):
 	if !self.is_on_floor(): return
@@ -93,9 +97,9 @@ func _m_handle_crouch(delta: float):
 	_cur_height = clamp(_cur_height, _M_CROUCH_HEIGHT, _def_height)
 
 	if Input.is_action_just_pressed("m_crouch"):
-		NetClient.send_input("IsCrouching", 1)
+		crouch_start_sig.emit()
 	elif Input.is_action_just_released("m_crouch"):
-		NetClient.send_input("IsCrouching", 0)
+		crouch_end_sig.emit()
 
 	if _cur_height != prev_height:
 		body_collision.shape.height = _cur_height

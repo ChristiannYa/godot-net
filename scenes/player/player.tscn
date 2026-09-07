@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgv84yybdkkgh"]
 
 [ext_resource type="Script" uid="uid://4pei5fswyukt" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://bu2bx7wuk7msy" path="res://scenes/player/player_net.gd" id="2_dovo2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7p2l"]
 albedo_color = Color(0.5882353, 0.83137256, 0.3764706, 1)
@@ -40,3 +41,6 @@ spring_length = 3.2
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/SpringArm3D" unique_id=1076212033]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Net" type="Node" parent="." unique_id=1411079928]
+script = ExtResource("2_dovo2")
