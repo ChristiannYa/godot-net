@@ -16,6 +16,7 @@ const _CAM_PITCH_MIN: float = deg_to_rad(-70.0)
 const _CAM_PITCH_MAX: float = deg_to_rad(70.0)
 
 signal jump_sig
+signal land_sig
 signal crouch_start_sig
 signal crouch_end_sig
 
@@ -27,6 +28,8 @@ signal crouch_end_sig
 var _def_rad: float
 var _def_height: float
 var _cur_height: float
+
+var _was_airborne := false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -62,6 +65,7 @@ func _m_handle_movement(delta: float):
 	_m_handle_yaw_rotation(delta, move_dir)
 	_m_handle_move_direction(delta, move_dir)
 	_m_handle_jump()
+	_m_handle_land()
 	_m_handle_crouch(delta)
 
 func _m_get_move_direction() -> Vector3:
@@ -87,6 +91,12 @@ func _m_handle_jump():
 	if !(Input.is_action_just_pressed("m_jump") and self.is_on_floor()): return
 	self.velocity.y = _M_JUMP_VEL
 	jump_sig.emit()
+
+func _m_handle_land():
+	var is_airborne := !self.is_on_floor()
+	if _was_airborne and !is_airborne:
+		land_sig.emit()
+	_was_airborne = is_airborne
 
 func _m_handle_crouch(delta: float):
 	if !self.is_on_floor(): return

@@ -5,7 +5,12 @@ const _BITS_LEN := 8
 var _peer := PacketPeerUDP.new()
 
 var _schema := GdPacketSchema.create()
-var _last_seq := {}
+
+## session id -> sequence number
+var _last_seq: Dictionary = {}
+
+## session id -> { field name -> value, ... }
+var player_states: Dictionary = {}
 
 func _ready():
 	_peer.bind(0)
@@ -17,16 +22,23 @@ func send_input(field_name: String, value: int):
 
 func _process(_delta: float):
 	while _peer.get_available_packet_count() > 0:
-		var fields: Dictionary = _schema.decode(_peer.get_packet())
-		var sess_id: int = fields.get("SessionId")
-		var seq: int = fields.get("Seq")
+		## field name -> value
+		var pkt: Dictionary = _schema.decode(_peer.get_packet())
 
-		if _last_seq.has(sess_id) and !_is_newer(seq, _last_seq[sess_id]):
+		var sid: int = pkt.get("SessionId")
+		var seq: int = pkt.get("Seq")
+
+		if _last_seq.has(sid) and !_is_newer(seq, _last_seq[sid]):
 			# Dropped: stale/out-of-order packet
 			continue
+		_last_seq[sid] = seq
 
-		_last_seq[sess_id] = seq
-		print("@Server: ", fields)
+		if !player_states.has(sid):
+			player_states[sid] = {}
+
+		for fn in pkt:
+			if fn != "SessionId" and fn != "Seq":
+				player_states[sid][fn] = pkt[fn]
 
 func _is_newer(seq: int, last: int) -> bool:
 	var bits_max: int = 1 << _BITS_LEN
