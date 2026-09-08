@@ -5,7 +5,7 @@ var _schema := GdPacketSchema.create()
 
 func _ready():
 	_peer.bind(0)
-	_peer.set_dest_address("127.0.0.1", 34254)
+	_peer.set_dest_address("10.0.0.4", 34254)
 
 func send_input(field_name: String, value: int):
 	var packet = _schema.encode({field_name: value})

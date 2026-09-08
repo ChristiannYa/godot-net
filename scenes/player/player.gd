@@ -44,7 +44,10 @@ func _ready():
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion: 
-		_handle_mouse_cam(event.relative.x, event.relative.y)
+		_cam_handle_mouse_control(event.relative.x, event.relative.y)
+
+	if event.is_action_pressed("ui_cancel"):
+		_cam_handle_mouse_release()
 
 func _physics_process(delta: float):
 	_handle_gravity(delta)
@@ -111,7 +114,7 @@ func _m_handle_crouch(delta: float):
 		body_collision.position.y = ofs
 		self.body.position.y = ofs	
 
-func _handle_mouse_cam(x: float, y: float):	
+func _cam_handle_mouse_control(x: float, y: float):	
 	# Yaw
 	camera_controller.rotate_y(-x * _MOUSE_SENS)
 
@@ -120,4 +123,11 @@ func _handle_mouse_cam(x: float, y: float):
 		spring_arm.rotation.x - y * _MOUSE_SENS,
 		_CAM_PITCH_MIN,
 		_CAM_PITCH_MAX
+	)
+
+func _cam_handle_mouse_release():
+	Input.mouse_mode = (
+		Input.MOUSE_MODE_VISIBLE
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
+		else Input.MOUSE_MODE_CAPTURED
 	)
