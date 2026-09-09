@@ -26,7 +26,10 @@ func _process(_delta: float):
 		var pkt: Dictionary = _schema.decode(_peer.get_packet())
 
 		var sid: int = pkt.get("SessionId")
-		var seq: int = pkt.get("Seq")
+
+		## Fallsback to 0 if not found. This means that the player has joined
+		## halfway through the session
+		var seq: int = pkt.get("Sequence", 0)
 
 		if _last_seq.has(sid) and !_is_newer(seq, _last_seq[sid]):
 			# Dropped: stale/out-of-order packet
@@ -36,9 +39,11 @@ func _process(_delta: float):
 		if !player_states.has(sid):
 			player_states[sid] = {}
 
-		for fn in pkt:
-			if fn != "SessionId" and fn != "Seq":
-				player_states[sid][fn] = pkt[fn]
+		for field_name in pkt:
+			if field_name != "SessionId" and field_name != "Sequence":
+				player_states[sid][field_name] = pkt[field_name]
+
+		SignalHub.emit_player_log_sig("(NetClient) player_states=%s" % player_states)
 
 func _is_newer(seq: int, last: int) -> bool:
 	var bits_max: int = 1 << _BITS_LEN

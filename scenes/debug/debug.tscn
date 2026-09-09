@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bn0c5rnls0kh2"]
+
+[ext_resource type="Script" uid="uid://c06fk1l1c1xq0" path="res://scenes/debug/debug.gd" id="1_kfclf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfclf"]
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 0.47058824)
+
+[node name="Debug" type="Control" unique_id=1419350418]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kfclf")
+
+[node name="Sections" type="MarginContainer" parent="." unique_id=2104259862]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.9
+anchor_bottom = 0.4
+offset_right = 24.0
+offset_bottom = 24.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="PanelContainer" type="PanelContainer" parent="Sections" unique_id=1877520127]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kfclf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sections/PanelContainer" unique_id=507484916]
+layout_mode = 2
+
+[node name="LogLabel" type="RichTextLabel" parent="Sections/PanelContainer/ScrollContainer" unique_id=370612863]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+bbcode_enabled = true
+fit_content = true
+scroll_following = true
+context_menu_enabled = true
+selection_enabled = true

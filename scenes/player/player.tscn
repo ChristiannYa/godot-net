@@ -31,7 +31,7 @@ shape = SubResource("CapsuleShape3D_dovo2")
 [node name="DebugLabel" type="Label3D" parent="." unique_id=1674550785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8929791, 0)
 billboard = 1
-font_size = 52
+font_size = 42
 
 [node name="CameraController" type="Node3D" parent="." unique_id=153969306]
 
