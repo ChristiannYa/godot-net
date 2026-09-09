@@ -20,6 +20,7 @@ signal land_sig
 signal crouch_start_sig
 signal crouch_end_sig
 
+@onready var debug_label: Label3D = $DebugLabel
 @onready var body: MeshInstance3D = $Body
 @onready var body_collision: CollisionShape3D = $BodyCollision
 @onready var camera_controller: Node3D = $CameraController

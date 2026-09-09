@@ -24,29 +24,32 @@ func _process(_delta: float):
 	while _peer.get_available_packet_count() > 0:
 		## field name -> value
 		var pkt: Dictionary = _schema.decode(_peer.get_packet())
-
+		
 		var sid: int = pkt.get("SessionId")
 
-		## Fallsback to 0 if not found. This means that the player has joined
-		## halfway through the session
-		var seq: int = pkt.get("Sequence", 0)
+		if pkt.has("Sequence"):
+			var seq: int = pkt["Sequence"]
+			if _last_seq.has(sid) and !_is_seq_new(seq, _last_seq[sid]):	
+				continue # Dropped: stale/out-of-order packet
+			_last_seq[sid] = seq
 
-		if _last_seq.has(sid) and !_is_newer(seq, _last_seq[sid]):
-			# Dropped: stale/out-of-order packet
-			continue
-		_last_seq[sid] = seq
+		if pkt.has("IsNewClient"):
+			SignalHub.player_sid.emit(sid)
 
 		if !player_states.has(sid):
 			player_states[sid] = {}
 
 		for field_name in pkt:
-			if field_name != "SessionId" and field_name != "Sequence":
+			if field_name not in ["IsNewClient", "SessionId", "Sequence"]:
 				player_states[sid][field_name] = pkt[field_name]
 
 		SignalHub.emit_player_log_sig("(NetClient) player_states=%s" % player_states)
 
-func _is_newer(seq: int, last: int) -> bool:
+## Returns true if `seq` is more recent than `last_seq`, treating both as a
+## circular counter that wraps at 2^`_BITS_LEN`.
+## This correctly handles wraparound (e.g. 0 counts as newer than 255) while
+## still rejecting genuinely stale/out-of-order packets.
+func _is_seq_new(seq: int, last_seq: int) -> bool:
 	var bits_max: int = 1 << _BITS_LEN
-	var diff: int = (seq - last + bits_max) % bits_max
+	var diff: int = (seq - last_seq + bits_max) % bits_max
 	return diff != 0 and diff < (bits_max >> 1)
-
