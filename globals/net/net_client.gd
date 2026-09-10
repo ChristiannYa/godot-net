@@ -22,28 +22,38 @@ func send_input(field_name: String, value: int):
 
 func _process(_delta: float):
 	while _peer.get_available_packet_count() > 0:
-		## field name -> value
-		var pkt: Dictionary = _schema.decode(_peer.get_packet())
-		
-		var sid: int = pkt.get("SessionId")
+		var raw_pkt = _peer.get_packet()
+		if raw_pkt.is_empty(): continue
 
-		if pkt.has("Sequence"):
-			var seq: int = pkt["Sequence"]
-			if _last_seq.has(sid) and !_is_seq_new(seq, _last_seq[sid]):	
-				continue # Dropped: stale/out-of-order packet
-			_last_seq[sid] = seq
-
-		if pkt.has("IsNewClient"):
-			SignalHub.player_sid.emit(sid)
-
-		if !player_states.has(sid):
-			player_states[sid] = {}
-
-		for field_name in pkt:
-			if field_name not in ["IsNewClient", "SessionId", "Sequence"]:
-				player_states[sid][field_name] = pkt[field_name]
+		match raw_pkt[0]:
+			GdPacketSchema.PACKET_KIND_SINGLE:		
+				_handle_pkt(_schema.decode(raw_pkt.slice(1)))
+			GdPacketSchema.PACKET_KIND_BATCH:
+				var records: Array = _schema.decode_batch(raw_pkt.slice(1))
+				for pkt in records:
+					_handle_pkt(pkt)
 
 		SignalHub.emit_player_log_sig("(NetClient) player_states=%s" % player_states)
+
+## `pkt`: field name -> value
+func _handle_pkt(pkt: Dictionary):
+	var sid: int = pkt.get("SessionId")
+
+	if pkt.has("Sequence"):
+		var seq: int = pkt["Sequence"]
+		if _last_seq.has(sid) and !_is_seq_new(seq, _last_seq[sid]):	
+			return # Dropped: stale/out-of-order packet
+		_last_seq[sid] = seq
+
+	if pkt.has("IsNewClient"):
+		SignalHub.player_sid.emit(sid)
+
+	if !player_states.has(sid):
+		player_states[sid] = {}
+
+	for field_name in pkt:
+		if field_name not in ["IsNewClient", "SessionId", "Sequence"]:
+			player_states[sid][field_name] = pkt[field_name]
 
 ## Returns true if `seq` is more recent than `last_seq`, treating both as a
 ## circular counter that wraps at 2^`_BITS_LEN`.
