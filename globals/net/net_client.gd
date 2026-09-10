@@ -33,7 +33,7 @@ func _process(_delta: float):
 				for pkt in records:
 					_handle_pkt(pkt)
 
-		SignalHub.emit_player_log_sig("(NetClient) player_states=%s" % player_states)
+		SignalHub.emit_player_states(player_states)
 
 ## `pkt`: field name -> value
 func _handle_pkt(pkt: Dictionary):
