@@ -1,14 +1,13 @@
 extends Node
 
 @onready var player: Player = get_parent()
-# @export var player: Player
 
 func _ready() -> void:
 	player.jump_sig.connect(_on_jump)
 	player.land_sig.connect(_on_land)
 	player.crouch_start_sig.connect(_on_crouch_start)
 	player.crouch_end_sig.connect(_on_crouch_end)
-	SignalHub.player_sid.connect(_on_player_sid)
+	SignalHub.player_sid_sig.connect(_on_player_sid)
 
 func _on_jump():
 	NetClient.send_input("IsJumping", 1)

@@ -9,7 +9,7 @@ var _lines: Array[String] = []
 var _logging = Logging.new()
 
 func _ready() -> void:
-	SignalHub.player_states.connect(_on_player_states)
+	SignalHub.player_states_sig.connect(_on_player_states)
 
 func _on_player_states(states: Dictionary):
 	var color = _logging.get_color(Logging.LogLevel.INFO)

@@ -46,7 +46,7 @@ func _handle_pkt(pkt: Dictionary):
 		_last_seq[sid] = seq
 
 	if pkt.has("IsNewClient"):
-		SignalHub.player_sid.emit(sid)
+		SignalHub.player_sid_sig.emit(sid)
 
 	if !player_states.has(sid):
 		player_states[sid] = {}
