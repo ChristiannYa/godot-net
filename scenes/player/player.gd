@@ -10,21 +10,18 @@ const _M_JUMP_VEL := 14.0
 const _M_CROUCH_HEIGHT := 1.0
 const _M_CROUCH_SPEED := 6.0
 
-const _MOUSE_SENS := 0.003
-
-const _CAM_PITCH_MIN: float = deg_to_rad(-70.0)
-const _CAM_PITCH_MAX: float = deg_to_rad(70.0)
-
 signal jump_sig
 signal land_sig
 signal crouch_start_sig
 signal crouch_end_sig
 
-@onready var debug_label: Label3D = $DebugLabel
+@export var player_color: Color = Color.WHITE:
+	set(val):
+		player_color = val
+		_c_apply_player_color()
+
 @onready var body: MeshInstance3D = $Body
-@onready var body_collision: CollisionShape3D = $BodyCollision
-@onready var camera_controller: Node3D = $CameraController
-@onready var spring_arm: SpringArm3D = $CameraController/SpringArm3D
+@onready var body_collision: CollisionShape3D = $Collision
 
 var _def_rad: float
 var _def_height: float
@@ -33,10 +30,6 @@ var _cur_height: float
 var _was_airborne := false
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-	# Duplicate shared resources so transforming this instance doesn't affect other
-	# Player instances using the same scene
 	var body_collision_shape: Shape3D = body_collision.shape.duplicate()
 	body_collision.shape = body_collision_shape
 	var body_mesh: Mesh = self.body.mesh.duplicate()
@@ -46,12 +39,7 @@ func _ready():
 	_def_height = body_collision_shape.height
 	_cur_height = _def_height
 
-func _input(event: InputEvent):
-	if event is InputEventMouseMotion: 
-		_cam_handle_mouse_control(event.relative.x, event.relative.y)
-
-	if event.is_action_pressed("ui_cancel"):
-		_cam_handle_mouse_release()
+	_c_apply_player_color()
 
 func _physics_process(delta: float):
 	_handle_gravity(delta)
@@ -62,17 +50,18 @@ func _handle_gravity(delta: float):
 	self.velocity.y += -_GRAVITY * delta
 
 func _m_handle_movement(delta: float):
-	var move_dir: Vector3 = _m_get_move_direction()
+	var move_dir: Vector3 = _get_move_direction()
 	_m_handle_yaw_rotation(delta, move_dir)
 	_m_handle_move_direction(delta, move_dir)
 	_m_handle_jump()
 	_m_handle_land()
 	_m_handle_crouch(delta)
 
-func _m_get_move_direction() -> Vector3:
-	var inp_dir: Vector2 = Input.get_vector("m_left", "m_right", "m_fwd", "m_back")
-	var cam_glob_basis: Basis = camera_controller.global_transform.basis
-	return cam_glob_basis.x * inp_dir.x + cam_glob_basis.z * inp_dir.y
+# Overridden by anything that actually drives movement (local input, network
+# replication).
+# Base default: a dummy that just stands there under gravity.
+func _get_move_direction() -> Vector3:
+	return Vector3.ZERO
 
 func _m_handle_yaw_rotation(delta: float, move_dir: Vector3):
 	if move_dir.length() <= 0.0: return
@@ -118,27 +107,16 @@ func _m_handle_crouch(delta: float):
 	if _cur_height != prev_height:
 		body_collision.shape.height = _cur_height
 		self.body.mesh.height = _cur_height
-
-		# Push the shape and mesh down so the bottom stays fixed and only the top
-		# appears to compress
 		var ofs: float = -(_def_height - _cur_height) * 0.5
 		body_collision.position.y = ofs
-		self.body.position.y = ofs	
+		self.body.position.y = ofs
 
-func _cam_handle_mouse_control(x: float, y: float):	
-	# Yaw
-	camera_controller.rotate_y(-x * _MOUSE_SENS)
+func _c_apply_player_color():
+	if !self.is_inside_tree() or body == null: return
 
-	# Pitch
-	spring_arm.rotation.x = clamp(
-		spring_arm.rotation.x - y * _MOUSE_SENS,
-		_CAM_PITCH_MIN,
-		_CAM_PITCH_MAX
-	)
+	var mat: StandardMaterial3D = body.material_override
+	if mat == null:
+		mat = StandardMaterial3D.new()
+		body.material_override = mat
 
-func _cam_handle_mouse_release():
-	Input.mouse_mode = (
-		Input.MOUSE_MODE_VISIBLE
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
-		else Input.MOUSE_MODE_CAPTURED
-	)
+	mat.albedo_color = player_color

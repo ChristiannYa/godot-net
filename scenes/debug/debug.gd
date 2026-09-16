@@ -9,9 +9,9 @@ var _lines: Array[String] = []
 var _logging = Logging.new()
 
 func _ready() -> void:
-	SignalHub.player_states_sig.connect(_on_player_states)
+	SignalHub.player_states_live_sig.connect(_on_player_states_live)
 
-func _on_player_states(states: Dictionary):
+func _on_player_states_live(states: Dictionary):
 	var color = _logging.get_color(Logging.LogLevel.INFO)
 	var timestamp := Time.get_time_string_from_system()
 	_lines.append("[color=%s][%s] %s[/color]" % [color, timestamp, states])

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://mag281hec0s4"]
+
+[ext_resource type="PackedScene" uid="uid://db0lri614ij81" path="res://scenes/player/player.tscn" id="1_1g5gh"]
+[ext_resource type="Script" uid="uid://c6dw1nnbks5v2" path="res://scenes/player/self/player_self.gd" id="2_bwhlj"]
+[ext_resource type="Script" uid="uid://b3q5vv630s4de" path="res://scenes/player/self/net.gd" id="3_q7lxc"]
+
+[node name="PlayerSelf" unique_id=189855238 instance=ExtResource("1_1g5gh")]
+script = ExtResource("2_bwhlj")
+player_color = Color(0.5882353, 0.83137256, 0.3764706, 1)
+
+[node name="DebugLabel" type="Label3D" parent="." index="2" unique_id=1674550785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+billboard = 1
+font_size = 42
+
+[node name="CameraController" type="Node3D" parent="." index="3" unique_id=153969306]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraController" index="0" unique_id=331757154]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1.1, 0)
+spring_length = 3.2
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/SpringArm3D" index="0" unique_id=1076212033]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Net" type="Node" parent="." index="4" unique_id=786599649]
+script = ExtResource("3_q7lxc")

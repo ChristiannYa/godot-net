@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ccigkukqkno6k" path="res://assets/textures/rubber_tiles/rubber_tiles_diff_1k.jpg" id="1_8absr"]
 [ext_resource type="Texture2D" uid="uid://bpyxvoeswr6kj" path="res://assets/textures/rubber_tiles/rubber_tiles_nor_gl_1k.jpg" id="2_1ro2l"]
 [ext_resource type="PackedScene" uid="uid://bn0c5rnls0kh2" path="res://scenes/debug/debug.tscn" id="4_51ujy"]
+[ext_resource type="PackedScene" uid="uid://mag281hec0s4" path="res://scenes/player/self/player_self.tscn" id="4_ypqds"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2hpey"]
 sky_top_color = Color(0.14303324, 0.37243056, 0.63993126, 1)
@@ -85,3 +86,6 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_sgctp")
 
 [node name="Debug" parent="." unique_id=1419350418 instance=ExtResource("4_51ujy")]
+
+[node name="PlayerSelf" parent="." unique_id=189855238 instance=ExtResource("4_ypqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4999998, 0)

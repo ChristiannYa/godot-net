@@ -1,12 +1,13 @@
 extends Node
 
-@onready var player: Player = get_parent()
+@onready var player: PlayerSelf = self.get_parent()
 
-func _ready() -> void:
+func _ready():
 	player.jump_sig.connect(_on_jump)
 	player.land_sig.connect(_on_land)
 	player.crouch_start_sig.connect(_on_crouch_start)
 	player.crouch_end_sig.connect(_on_crouch_end)
+
 	SignalHub.player_sid_sig.connect(_on_player_sid)
 
 func _on_jump():
