@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d24q8awigbyh8"]
+
+[ext_resource type="PackedScene" uid="uid://db0lri614ij81" path="res://scenes/player/player.tscn" id="1_bpwdw"]
+[ext_resource type="Script" uid="uid://cl8ayrjtxgiua" path="res://scenes/player/remote/player_remote.gd" id="2_8aa4n"]
+
+[node name="PlayerRemote" unique_id=189855238 instance=ExtResource("1_bpwdw")]
+script = ExtResource("2_8aa4n")

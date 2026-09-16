@@ -28,6 +28,7 @@ var _def_height: float
 var _cur_height: float
 
 var _was_airborne := false
+var _was_crouching := false
 
 func _ready():
 	var body_collision_shape: Shape3D = body_collision.shape.duplicate()
@@ -78,9 +79,12 @@ func _m_handle_move_direction(delta: float, move_dir: Vector3):
 	self.velocity.z = move_dir.z * _M_SPEED if is_moving else move_toward(self.velocity.z, 0.0, _M_DECC * delta)
 
 func _m_handle_jump():
-	if !(Input.is_action_just_pressed("m_jump") and self.is_on_floor()): return
+	if !(_wants_to_jump() and self.is_on_floor()): return
 	self.velocity.y = _M_JUMP_VEL
 	jump_sig.emit()
+
+func _wants_to_jump() -> bool:
+	return false
 
 func _m_handle_land():
 	var is_airborne := !self.is_on_floor()
@@ -92,17 +96,20 @@ func _m_handle_crouch(delta: float):
 	if !self.is_on_floor(): return
 	var prev_height: float = _cur_height
 
-	if Input.is_action_pressed("m_crouch"): 
+	var wants_to_crouch: bool = _wants_to_crouch()
+	if wants_to_crouch: 
 		_cur_height -= _M_CROUCH_SPEED * delta
 	else: 
 		_cur_height += _M_CROUCH_SPEED * delta
 
 	_cur_height = clamp(_cur_height, _M_CROUCH_HEIGHT, _def_height)
 
-	if Input.is_action_just_pressed("m_crouch"):
+	if wants_to_crouch and !_was_crouching:
 		crouch_start_sig.emit()
-	elif Input.is_action_just_released("m_crouch"):
+	elif !wants_to_crouch and _was_crouching:
 		crouch_end_sig.emit()
+
+	_was_crouching = wants_to_crouch
 
 	if _cur_height != prev_height:
 		body_collision.shape.height = _cur_height
@@ -110,6 +117,9 @@ func _m_handle_crouch(delta: float):
 		var ofs: float = -(_def_height - _cur_height) * 0.5
 		body_collision.position.y = ofs
 		self.body.position.y = ofs
+
+func _wants_to_crouch() -> bool:
+	return false
 
 func _c_apply_player_color():
 	if !self.is_inside_tree() or body == null: return

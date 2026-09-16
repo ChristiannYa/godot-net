@@ -25,6 +25,12 @@ func _get_move_direction() -> Vector3:
 	var cam_glob_basis: Basis = camera_controller.global_transform.basis
 	return cam_glob_basis.x * inp_dir.x + cam_glob_basis.z * inp_dir.y
 
+func _wants_to_jump() -> bool:
+	return Input.is_action_just_pressed("m_jump")
+
+func _wants_to_crouch() -> bool:
+	return Input.is_action_pressed("m_crouch")
+
 func _cam_handle_mouse_control(x: float, y: float):
 	camera_controller.rotate_y(-x * _MOUSE_SENS)
 	spring_arm.rotation.x = clamp(

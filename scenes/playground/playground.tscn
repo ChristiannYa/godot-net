@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bpyxvoeswr6kj" path="res://assets/textures/rubber_tiles/rubber_tiles_nor_gl_1k.jpg" id="2_1ro2l"]
 [ext_resource type="PackedScene" uid="uid://bn0c5rnls0kh2" path="res://scenes/debug/debug.tscn" id="4_51ujy"]
 [ext_resource type="PackedScene" uid="uid://mag281hec0s4" path="res://scenes/player/self/player_self.tscn" id="4_ypqds"]
+[ext_resource type="PackedScene" uid="uid://d24q8awigbyh8" path="res://scenes/player/remote/player_remote.tscn" id="5_ypqds"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2hpey"]
 sky_top_color = Color(0.14303324, 0.37243056, 0.63993126, 1)
@@ -86,6 +87,16 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_sgctp")
 
 [node name="Debug" parent="." unique_id=1419350418 instance=ExtResource("4_51ujy")]
+visible = false
 
 [node name="PlayerSelf" parent="." unique_id=189855238 instance=ExtResource("4_ypqds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4999998, 0)
+
+[node name="PlayerRemote" parent="." unique_id=64006004 instance=ExtResource("5_ypqds")]
+transform = Transform3D(-0.5880826, 0, -0.8088009, 0, 1, 0, 0.8088009, 0, -0.5880826, -6.005545, 1.4999995, -9.965458)
+
+[node name="PlayerRemote3" parent="." unique_id=1348032085 instance=ExtResource("5_ypqds")]
+transform = Transform3D(-0.9995055, 0, -0.031442583, 0, 1, 0, 0.031442583, 0, -0.9995055, -1.514297, 3.4999988, -13.205102)
+
+[node name="PlayerRemote2" parent="." unique_id=1620827953 instance=ExtResource("5_ypqds")]
+transform = Transform3D(-0.9057771, 0, 0.42375454, 0, 1, 0, -0.42375454, 0, -0.9057771, 1.6690974, 1.4999995, -9.071462)
