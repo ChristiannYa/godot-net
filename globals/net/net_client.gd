@@ -4,7 +4,7 @@ const _BITS_LEN := 8
 
 var _peer := PacketPeerUDP.new()
 
-var schema := GdPacketSchema.create()
+var net_pkt_codec := NetPacketCodec.create()
 
 ## session id -> sequence number
 var _last_seq: Dictionary = {}
@@ -26,10 +26,10 @@ func _process(_delta: float):
 		if raw_pkt.is_empty(): continue
 
 		match raw_pkt[0]:
-			GdPacketSchema.PACKET_KIND_SINGLE:		
-				_handle_pkt(schema.decode(raw_pkt.slice(1)), false)
-			GdPacketSchema.PACKET_KIND_BATCH:
-				var records: Array = schema.decode_batch(raw_pkt.slice(1))
+			NetPacketCodec.PACKET_KIND_SINGLE:		
+				_handle_pkt(net_pkt_codec.decode(raw_pkt.slice(1)), false)
+			NetPacketCodec.PACKET_KIND_BATCH:
+				var records: Array = net_pkt_codec.decode_batch(raw_pkt.slice(1))
 				for pkt in records:
 					_handle_pkt(pkt, true)
 
@@ -64,7 +64,7 @@ func is_synced(sid: int) -> bool:
 	return _synced_sids.has(sid)
 
 func send_input(field_name: String, value: int):
-	var packet = schema.encode({field_name: value})
+	var packet = net_pkt_codec.encode({field_name: value})
 	_peer.put_packet(packet)
 
 ## Returns true if `seq` is more recent than `last_seq`, treating both as a

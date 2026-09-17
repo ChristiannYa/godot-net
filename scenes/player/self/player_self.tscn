@@ -6,7 +6,6 @@
 
 [node name="PlayerSelf" unique_id=189855238 instance=ExtResource("1_1g5gh")]
 script = ExtResource("2_bwhlj")
-player_color = Color(0.5882353, 0.83137256, 0.3764706, 1)
 
 [node name="SidLabel" type="Label3D" parent="." index="2" unique_id=1674550785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)

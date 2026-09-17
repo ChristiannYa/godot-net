@@ -36,7 +36,7 @@ func _get_spawned(resr: Resource, state: Dictionary, sid: int):
 	return player
 
 func _get_pos(state: Dictionary, sid: int) -> Vector3:
-	var x = NetClient.schema.decode_loc_x(state["LocationX"])
-	var z = NetClient.schema.decode_loc_z(state["LocationZ"])
+	var x = NetClient.net_pkt_codec.decode_loc_x(state["LocationX"])
+	var z = NetClient.net_pkt_codec.decode_loc_z(state["LocationZ"])
 	var y = 1.5 if NetClient.is_synced(sid) else 800.0
 	return Vector3(x, y, z)
