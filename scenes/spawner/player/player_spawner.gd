@@ -1,9 +1,9 @@
 extends Node
 
-const _PLAYER_SELF := preload("res://scenes/player/self/player_self.tscn")
-const _PLAYER_REMOTE := preload("res://scenes/player/remote/player_remote.tscn")
+const _PLAYER_SELF: Resource = preload("res://scenes/player/self/player_self.tscn")
+const _PLAYER_REMOTE: Resource = preload("res://scenes/player/remote/player_remote.tscn")
 
-var _cur_player_sid := -1
+var _sid := -1
 
 ## sid -> Player
 var _spawned := {} 
@@ -13,36 +13,29 @@ func _ready() -> void:
 	SignalHub.player_states_live_sig.connect(_on_player_states_live)
 
 func _on_player_sid(sid: int):
-	_cur_player_sid = sid
+	_sid = sid
 
 func _on_player_states_live(states: Dictionary):
-	if _cur_player_sid != -1 and !_spawned.has(_cur_player_sid):
-		var state = states.get(_cur_player_sid, {})
-		if state.has("LocationX") and state.has("LocationZ"):
-			_spawned[_cur_player_sid] = _spawn_self(_cur_player_sid)
+	if _sid != -1 and !_spawned.has(_sid):
+		_handle_reg(_PLAYER_SELF, states, _sid)
 
 	for sid in states:
-		if sid == _cur_player_sid or _spawned.has(sid): continue
-		var state: Dictionary = states[sid]
-		if state.has("LocationX") and state.has("LocationZ"):
-			_spawned[sid] = _spawn_remote(sid)
+		if sid == _sid or _spawned.has(sid): continue
+		_handle_reg(_PLAYER_REMOTE, states, sid)
 
-func _spawn_self(sid: int) -> Player:
-	var player: Player = _PLAYER_SELF.instantiate()
+func _handle_reg(resr: Resource, states: Dictionary, sid: int):
+	var state: Dictionary = states[sid]
+	if state.has("LocationX") and state.has("LocationZ"):
+		_spawned[sid] = _get_spawned(resr, state, sid)
+
+func _get_spawned(resr: Resource, state: Dictionary, sid: int):
+	var player: Player = resr.instantiate()
 	add_child(player)
-	player.global_position = _spawn_pos(sid)
+	player.global_position = _get_pos(state, sid)
 	player.sid = sid
 	return player
 
-func _spawn_remote(sid: int) -> Player:
-	var player: Player = _PLAYER_REMOTE.instantiate()
-	add_child(player)
-	player.global_position = _spawn_pos(sid)
-	player.sid = sid
-	return player
-
-func _spawn_pos(sid: int) -> Vector3:
-	var state = NetClient.get_player_state(sid)
+func _get_pos(state: Dictionary, sid: int) -> Vector3:
 	var x = NetClient.schema.decode_loc_x(state["LocationX"])
 	var z = NetClient.schema.decode_loc_z(state["LocationZ"])
 	var y = 1.5 if NetClient.is_synced(sid) else 800.0

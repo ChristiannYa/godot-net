@@ -63,9 +63,6 @@ func _ping(): self.send_input("Ping", 1)
 func is_synced(sid: int) -> bool:
 	return _synced_sids.has(sid)
 
-func get_player_state(sid: int) -> Dictionary:
-	return _player_states.get(sid, {})
-
 func send_input(field_name: String, value: int):
 	var packet = schema.encode({field_name: value})
 	_peer.put_packet(packet)
