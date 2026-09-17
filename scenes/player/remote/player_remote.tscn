@@ -2,6 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://db0lri614ij81" path="res://scenes/player/player.tscn" id="1_bpwdw"]
 [ext_resource type="Script" uid="uid://cl8ayrjtxgiua" path="res://scenes/player/remote/player_remote.gd" id="2_8aa4n"]
+[ext_resource type="Script" uid="uid://4eerkhsolc2p" path="res://scenes/player/remote/net.gd" id="3_ifpyr"]
 
 [node name="PlayerRemote" unique_id=189855238 instance=ExtResource("1_bpwdw")]
 script = ExtResource("2_8aa4n")
+
+[node name="SidLabel" type="Label3D" parent="." index="2" unique_id=122238739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+billboard = 1
+font_size = 42
+
+[node name="Net" type="Node" parent="." index="3" unique_id=119608208]
+script = ExtResource("3_ifpyr")

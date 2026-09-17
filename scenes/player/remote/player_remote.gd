@@ -1,6 +1,8 @@
 class_name PlayerRemote
 extends Player
 
+@onready var sid_label: Label3D = $SidLabel
+
 func _ready():
 	self.player_color = Color.from_hsv(
 		randf(), 

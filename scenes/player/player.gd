@@ -23,6 +23,8 @@ signal crouch_end_sig
 @onready var body: MeshInstance3D = $Body
 @onready var body_collision: CollisionShape3D = $Collision
 
+var sid := -1
+
 var _def_rad: float
 var _def_height: float
 var _cur_height: float
