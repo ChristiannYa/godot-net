@@ -55,7 +55,7 @@ func _handle_pkt(pkt: Dictionary, is_sync: bool):
 
 
 	for field_name in pkt:
-		if field_name not in ["IsNewPlayer", "SessionId", "Sequence"]:
+		if field_name not in ["IsNewPlayer", "SessionId", "Sequence", "Ping"]:
 			_player_states[sid][field_name] = pkt[field_name]
 
 func _ping(): self.send_input("Ping", 1)

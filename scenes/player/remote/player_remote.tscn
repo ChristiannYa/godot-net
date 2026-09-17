@@ -12,5 +12,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 billboard = 1
 font_size = 42
 
-[node name="Net" type="Node" parent="." index="3" unique_id=119608208]
+[node name="Net" type="Node" parent="." index="3" unique_id=454402828]
 script = ExtResource("3_ifpyr")

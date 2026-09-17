@@ -7,19 +7,18 @@
 [node name="PlayerSelf" unique_id=189855238 instance=ExtResource("1_1g5gh")]
 script = ExtResource("2_bwhlj")
 
-[node name="SidLabel" type="Label3D" parent="." index="2" unique_id=1674550785]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-billboard = 1
-font_size = 42
-
-[node name="CameraController" type="Node3D" parent="." index="3" unique_id=153969306]
+[node name="CameraController" type="Node3D" parent="." index="2" unique_id=153969306]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraController" index="0" unique_id=331757154]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1.1, 0)
 spring_length = 3.2
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/SpringArm3D" index="0" unique_id=1076212033]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Net" type="Node" parent="." index="4" unique_id=786599649]
+[node name="SidLabel" type="Label3D" parent="." index="3" unique_id=1674550785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+billboard = 1
+font_size = 42
+
+[node name="Net" type="Node" parent="." index="4" unique_id=673214772]
 script = ExtResource("3_q7lxc")
