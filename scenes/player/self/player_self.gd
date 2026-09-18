@@ -7,7 +7,6 @@ const _CAM_PITCH_MAX: float = deg_to_rad(70.0)
 
 @onready var camera_controller: Node3D = $CameraController
 @onready var spring_arm: SpringArm3D = $CameraController/SpringArm3D
-@onready var sid_label: Label3D = $SidLabel
 
 func _ready():
 	super._ready()

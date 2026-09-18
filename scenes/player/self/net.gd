@@ -8,8 +8,6 @@ func _ready():
 	player.crouch_start_sig.connect(_on_crouch_start)
 	player.crouch_end_sig.connect(_on_crouch_end)
 
-	_set_sid_label.call_deferred()
-
 func _on_jump():
 	NetClient.send_input("IsJumping", 1)
 
@@ -21,6 +19,3 @@ func _on_crouch_start():
 
 func _on_crouch_end():
 	NetClient.send_input("IsCrouching", 0)
-
-func _set_sid_label():
-	player.sid_label.text = "sid=%d" % player.sid

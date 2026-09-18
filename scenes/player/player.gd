@@ -22,8 +22,11 @@ signal crouch_end_sig
 
 @onready var body: MeshInstance3D = $Body
 @onready var body_collision: CollisionShape3D = $Collision
+@onready var sid_label: Label3D = $SidLabel
 
-var sid := -1
+var sid: int = -1:
+	set(val):
+		sid = val
 
 var _def_rad: float
 var _def_height: float
@@ -43,6 +46,7 @@ func _ready():
 	_cur_height = _def_height
 
 	_c_apply_player_color()
+	_apply_sid_label()
 
 func _physics_process(delta: float):
 	_handle_gravity(delta)
@@ -132,3 +136,6 @@ func _c_apply_player_color():
 		body.material_override = mat
 
 	mat.albedo_color = player_color
+
+func _apply_sid_label():
+	sid_label.text = "sid=%d" % sid

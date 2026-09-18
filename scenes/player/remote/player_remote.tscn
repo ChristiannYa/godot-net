@@ -5,8 +5,3 @@
 
 [node name="PlayerRemote" unique_id=189855238 instance=ExtResource("1_bpwdw")]
 script = ExtResource("2_8aa4n")
-
-[node name="SidLabel" type="Label3D" parent="." index="2" unique_id=122238739]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-billboard = 1
-font_size = 42
