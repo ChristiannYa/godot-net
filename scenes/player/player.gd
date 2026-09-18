@@ -24,9 +24,7 @@ signal crouch_end_sig
 @onready var body_collision: CollisionShape3D = $Collision
 @onready var sid_label: Label3D = $SidLabel
 
-var sid: int = -1:
-	set(val):
-		sid = val
+var sid: int = -1
 
 var _def_rad: float
 var _def_height: float
