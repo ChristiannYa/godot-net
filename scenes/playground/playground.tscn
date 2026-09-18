@@ -86,5 +86,6 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_sgctp")
 
 [node name="Debug" parent="." unique_id=1419350418 instance=ExtResource("4_51ujy")]
+visible = false
 
 [node name="ObjectMaker" parent="." unique_id=1686449328 instance=ExtResource("4_ypqds")]
