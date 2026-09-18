@@ -37,15 +37,15 @@ func _process(_delta: float):
 
 ## `pkt`: field name -> value
 func _handle_pkt(pkt: Dictionary, is_sync: bool):
-	var sid: int = pkt.get("SessionId")
+	var sid: int = pkt.get("DevSessionId")
 
-	if pkt.has("Sequence"):
-		var seq: int = pkt["Sequence"]
+	if pkt.has("DevSequence"):
+		var seq: int = pkt["DevSequence"]
 		if _last_seq.has(sid) and !_is_seq_new(seq, _last_seq[sid]):	
 			return # Dropped: stale/out-of-order packet
 		_last_seq[sid] = seq
 
-	if pkt.has("IsNewPlayer"):
+	if pkt.has("DevIsNewPlayer"):
 		SignalHub.player_sid_sig.emit(sid)
 
 	if !_player_states.has(sid):
@@ -54,11 +54,11 @@ func _handle_pkt(pkt: Dictionary, is_sync: bool):
 			_synced_sids[sid] = true
 
 
-	for field_name in pkt:
-		if field_name not in ["IsNewPlayer", "SessionId", "Sequence", "Ping"]:
+	for field_name: String in pkt:
+		if !field_name.begins_with("Dev"):
 			_player_states[sid][field_name] = pkt[field_name]
 
-func _ping(): self.send_input("Ping", 1)
+func _ping(): self.send_input("DevPing", 1)
 
 func is_synced(sid: int) -> bool:
 	return _synced_sids.has(sid)
