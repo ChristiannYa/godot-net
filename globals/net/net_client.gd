@@ -1,77 +1,73 @@
 extends Node
 
-const _BITS_LEN := 8
+var _udp_peer := PacketPeerUDP.new()
+var udp_codec := UdpCodec.create()
 
-var _peer := PacketPeerUDP.new()
-
-var net_pkt_codec := NetPacketCodec.create()
-
-## session id -> sequence number
-var _last_seq: Dictionary = {}
-
-## session id -> TRUE
-var _synced_sids: Dictionary = {}
-
-## session id -> { field name -> value, ... }
-var _player_states: Dictionary = {}
+var _state := NetState.new()
+var _rel := NetReliable.new()
 
 func _ready():
-	_peer.bind(0)
-	_peer.set_dest_address("10.0.0.4", 34254)
-	_ping()
+	_udp_peer.bind(0)
+	_udp_peer.set_dest_address("10.0.0.4", 34254)
+	self.send_input("DevPing", 1)
 
 func _process(_delta: float):
-	while _peer.get_available_packet_count() > 0:
-		var raw_pkt = _peer.get_packet()
-		if raw_pkt.is_empty(): continue
+	while _udp_peer.get_available_packet_count() > 0:
+		var pkt = _udp_peer.get_packet()
 
-		match raw_pkt[0]:
-			NetPacketCodec.PACKET_KIND_SINGLE:		
-				_handle_pkt(net_pkt_codec.decode(raw_pkt.slice(1)), false)
-			NetPacketCodec.PACKET_KIND_BATCH:
-				var records: Array = net_pkt_codec.decode_batch(raw_pkt.slice(1))
-				for pkt in records:
-					_handle_pkt(pkt, true)
+		## Too short to hold the header
+		if pkt.size() < 2: continue
 
-		SignalHub.emit_player_states_live(_player_states)
+		match pkt[0]:
+			UdpCodec.PKT_ACK: _handle_ack_pkt(pkt)
+			UdpCodec.PKT_DATA: _handle_data_pkt(pkt)
+
+	_tick_rel()
+
+func _handle_ack_pkt(raw_pkt: PackedByteArray):
+	var id: int = UdpAck.decode_ack(raw_pkt)
+	if id != -1: _rel.handle_ack(id)
+
+func _handle_data_pkt(raw_pkt: PackedByteArray):
+	match raw_pkt[1]:
+		UdpCodec.DEC_SINGLE:
+			_handle_pkt(udp_codec.decode(raw_pkt), false)
+		UdpCodec.DEC_BATCH:
+			var records: Array = udp_codec.decode_batch(raw_pkt)
+			for pkt in records: _handle_pkt(pkt, true)
+
+	SignalHub.emit_player_states_live(_state.player_states())
 
 ## `pkt`: field name -> value
 func _handle_pkt(pkt: Dictionary, is_sync: bool):
 	var sid: int = pkt.get("DevSessionId")
 
-	if pkt.has("DevSequence"):
-		var seq: int = pkt["DevSequence"]
-		if _last_seq.has(sid) and !_is_seq_new(seq, _last_seq[sid]):	
-			return # Dropped: stale/out-of-order packet
-		_last_seq[sid] = seq
+	# Dropped: stale/out-of-order packet
+	if !_state.accept_seq(sid, pkt): return 
 
-	if pkt.has("DevIsNewPlayer"):
-		SignalHub.player_sid_sig.emit(sid)
+	if pkt.has("DevPacketId"):
+		var pkt_id: int = pkt["DevPacketId"]
+		_udp_peer.put_packet(UdpAck.encode_ack(pkt_id))
+		if _rel.is_pkt_seen(pkt_id): return # No need to re-process packet
 
-	if !_player_states.has(sid):
-		_player_states[sid] = {}
-		if is_sync:
-			_synced_sids[sid] = true
+	if pkt.has("DevIsNewPlayer"): SignalHub.player_sid_sig.emit(sid)
 
+	_state.reg_player(sid, is_sync)
 
 	for field_name: String in pkt:
 		if !field_name.begins_with("Dev"):
-			_player_states[sid][field_name] = pkt[field_name]
+			_state.save_field(sid, field_name, pkt[field_name])
 
-func _ping(): self.send_input("DevPing", 1)
+func _tick_rel():
+	for bytes: PackedByteArray in _rel.tick():
+		_udp_peer.put_packet(bytes)
 
-func is_synced(sid: int) -> bool:
-	return _synced_sids.has(sid)
+func is_synced(sid: int) -> bool: return _state.is_synced(sid)
 
 func send_input(field_name: String, value: int):
-	var packet = net_pkt_codec.encode({field_name: value})
-	_peer.put_packet(packet)
+	var pkt = udp_codec.encode({field_name: value})
+	_udp_peer.put_packet(pkt)
 
-## Returns true if `seq` is more recent than `last_seq`, treating both as a
-## circular counter that wraps at 2^`_BITS_LEN`.
-## This correctly handles wraparound (e.g. 0 counts as newer than 255) while
-## still rejecting genuinely stale/out-of-order packets.
-func _is_seq_new(seq: int, last_seq: int) -> bool:
-	var bits_max: int = 1 << _BITS_LEN
-	var diff: int = (seq - last_seq + bits_max) % bits_max
-	return diff != 0 and diff < (bits_max >> 1)
+func send_input_rel(field_name: String, val: int):
+	var pkt := _rel.send({field_name: val}, udp_codec.encode)
+	_udp_peer.put_packet(pkt)

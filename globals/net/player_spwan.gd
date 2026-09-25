@@ -38,11 +38,11 @@ func _handle_spawn(resr: PackedScene, states: Dictionary, sid: int):
 		_spawned[sid] = true
 
 func _get_spawn_pos(state: Dictionary, sid: int) -> Vector3:
-	var loc: Vector3 = NetClient.net_pkt_codec.decode_loc(state["LocationX"], state["LocationZ"])
-	var y = 1.5 if NetClient.is_synced(sid) else 800.0
+	var loc: Vector3 = NetClient.udp_codec.decode_loc(state["LocationX"], state["LocationZ"])
+	var y = 1.5 if NetClient.is_synced(sid) else 10.5
 	return Vector3(loc.x, y, loc.z)
 
 func _get_color(state: Dictionary) -> Color:
-	return NetClient.net_pkt_codec.decode_hsv(
+	return NetClient.udp_codec.decode_hsv(
 		state["ColorH"], state["ColorS"], state["ColorV"]
 	)

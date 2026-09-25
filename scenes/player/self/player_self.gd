@@ -13,7 +13,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_cam_handle_mouse_control(event.relative.x, event.relative.y)
 
 	if event.is_action_pressed("ui_cancel"):
