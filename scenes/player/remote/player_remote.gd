@@ -34,8 +34,9 @@ func _handle_jump_listener(states: Dictionary):
 		_jump_baseline_pending = false
 		return
 
-	if val != _last_jump_val:
+	if val == 1 and _last_jump_val == 0:
 		_pending_jump = true
+
 	_last_jump_val = val
 
 func _handle_crouch_listener(states: Dictionary):
