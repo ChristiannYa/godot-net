@@ -40,6 +40,8 @@ func _handle_data_pkt(raw_pkt: PackedByteArray):
 
 ## `pkt`: field name -> value
 func _handle_pkt(pkt: Dictionary, is_sync: bool):
+	print("[net_client, _handle_pkt] (), sid=%s" % [pkt.get("DevSessionId")])
+
 	var sid: int = pkt.get("DevSessionId")
 
 	# Dropped: stale/out-of-order packet
@@ -63,6 +65,8 @@ func _tick_rel():
 		_udp_peer.put_packet(bytes)
 
 func is_synced(sid: int) -> bool: return _state.is_synced(sid)
+
+func player_states() -> Dictionary: return _state.player_states()
 
 func send_input(field_name: String, value: int):
 	var pkt = udp_codec.encode({field_name: value})
