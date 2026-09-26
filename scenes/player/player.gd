@@ -58,8 +58,8 @@ func _m_handle_movement(delta: float):
 	var move_dir: Vector3 = _get_move_direction()
 	_m_handle_yaw_rotation(delta, move_dir)
 	_m_handle_move_direction(delta, move_dir)
-	_m_handle_jump()
 	_m_handle_land()
+	_m_handle_jump()
 	_m_handle_crouch(delta)
 
 # Overridden by anything that actually drives movement (local input, network

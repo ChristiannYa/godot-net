@@ -40,7 +40,7 @@ func _handle_data_pkt(raw_pkt: PackedByteArray):
 
 ## `pkt`: field name -> value
 func _handle_pkt(pkt: Dictionary, is_sync: bool):
-	print("[net_client, _handle_pkt] (), sid=%s" % [pkt.get("DevSessionId")])
+	print("[net_client, _handle_pkt] sid=%s, dev_pkt_id=%s" % [pkt.get("DevSessionId"), pkt.get("DevPacketId")])
 
 	var sid: int = pkt.get("DevSessionId")
 
