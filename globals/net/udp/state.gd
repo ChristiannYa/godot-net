@@ -44,5 +44,4 @@ func save_field(sid: int, field_name: String, value):
 	_player_states[sid][field_name] = value
 
 func player_states() -> Dictionary: return _player_states
-
 func is_synced(sid: int) -> bool: return _synced_sids.has(sid)

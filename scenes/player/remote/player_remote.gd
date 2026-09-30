@@ -10,11 +10,10 @@ var _jump_ct := 0
 
 func _ready():
 	super._ready();
-	print("[player_remote, _ready] sid=%d" % sid)
 	SignalHub.player_states_live_sig.connect(_on_player_states_live)	
 
 func _sync_jump():
-	var states := NetClient.player_states()
+	var states: Dictionary = UdpSkt.player_states()
 	if states.has(sid) and (states[sid] as Dictionary).has("IsJumping"):
 		_last_jump_val = states[sid]["IsJumping"]
 
@@ -22,7 +21,6 @@ func _wants_to_jump() -> bool:
 	if _pending_jump:
 		_pending_jump = false
 		_jump_ct += 1
-		print("[player_remote, _wants_to_jump] sid=%d consuming pending_jump" % sid)
 		return true
 	return false
 
@@ -34,15 +32,11 @@ func _on_player_states_live(states: Dictionary):
 	_handle_crouch_listener(states)
 
 func _handle_jump_listener(states: Dictionary):
-	if !states.has(sid) or !(states[sid] as Dictionary).has("IsJumping"): 
-		print("[player_remote, _handle_jump_listener] sid=%d guard-return (no state/IsJumping yet)" % sid)
-		return
+	if !states.has(sid) or !(states[sid] as Dictionary).has("IsJumping"): return
 	var val: int = states[sid]["IsJumping"]
-	print("[player_remote, _handle_jump_listener] sid=%d val=%d last=%d" % [sid, val, _last_jump_val])
 
 	if val == 1 and _last_jump_val == 0:
 		_pending_jump = true
-		print("[player_remote, _handle_jump_listener] sid=%d rising edge, pending_jump set" % sid)
 
 	_last_jump_val = val
 

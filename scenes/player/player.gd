@@ -84,7 +84,6 @@ func _m_handle_move_direction(delta: float, move_dir: Vector3):
 
 func _m_handle_jump():
 	if !(_wants_to_jump() and self.is_on_floor()): return
-	print("[PHY] jump_sig emitting, _was_airborne=%s" % _was_airborne)
 	self.velocity.y = _M_JUMP_VEL
 	jump_sig.emit()
 
@@ -94,7 +93,6 @@ func _wants_to_jump() -> bool:
 func _m_handle_land():
 	var is_airborne := !self.is_on_floor()
 	if _was_airborne and !is_airborne:
-		print("[PHY] land_sig emitting")
 		land_sig.emit()
 	_was_airborne = is_airborne
 

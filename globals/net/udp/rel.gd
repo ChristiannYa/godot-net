@@ -6,8 +6,8 @@ var _udp_dedup := UdpDedup.create()
 
 ## Seeds `DevPacketId` into `fields` before `encode()`, and tracks the
 ## resulting bytes for retry.
-## Returns the encoded bytes to send.
-func send(fields: Dictionary, encode: Callable) -> PackedByteArray:
+## Returns the encoded bytes to send_input.
+func send_input(fields: Dictionary, encode: Callable) -> PackedByteArray:
 	var id: int = _udp_pending.next_id()
 	fields["DevPacketId"] = id
 

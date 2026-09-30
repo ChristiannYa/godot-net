@@ -1,3 +1,4 @@
+class_name PlayerSpawn
 extends Node
 
 const _PLAYER_SELF: PackedScene = preload("res://scenes/player/self/player_self.tscn")
@@ -38,11 +39,11 @@ func _handle_spawn(resr: PackedScene, states: Dictionary, sid: int):
 		_spawned[sid] = true
 
 func _get_spawn_pos(state: Dictionary, sid: int) -> Vector3:
-	var loc: Vector3 = NetClient.udp_codec.decode_loc(state["LocationX"], state["LocationZ"])
-	var y = 1.5 if NetClient.is_synced(sid) else 10.5
+	var loc: Vector3 = UdpSkt.udp_codec.decode_loc(state["LocationX"], state["LocationZ"])
+	var y = 1.5 if UdpSkt.is_synced(sid) else 10.5
 	return Vector3(loc.x, y, loc.z)
 
 func _get_color(state: Dictionary) -> Color:
-	return NetClient.udp_codec.decode_hsv(
+	return UdpSkt.udp_codec.decode_hsv(
 		state["ColorH"], state["ColorS"], state["ColorV"]
 	)
