@@ -30,7 +30,7 @@ func data(raw_pkt: PackedByteArray):
 
 	var player_states_capture = _state.player_states()
 	SignalHub.emit_player_states_live(player_states_capture)
-	print("player_states=%s" % player_states_capture)
+	# print("player_states=%s" % player_states_capture)
 
 ## `pkt`: field name -> value
 func _handle_pkt(pkt: Dictionary, is_sync: bool):

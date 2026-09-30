@@ -83,7 +83,7 @@ func _m_handle_move_direction(delta: float, move_dir: Vector3):
 	self.velocity.z = move_dir.z * _M_SPEED if is_moving else move_toward(self.velocity.z, 0.0, _M_DECC * delta)
 
 func _m_handle_jump():
-	if !(_wants_to_jump() and self.is_on_floor()): return
+	if !(self.is_on_floor() and _wants_to_jump()): return
 	self.velocity.y = _M_JUMP_VEL
 	jump_sig.emit()
 
