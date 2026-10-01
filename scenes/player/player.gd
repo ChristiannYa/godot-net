@@ -118,9 +118,9 @@ func _m_handle_crouch(delta: float):
 	if _cur_height != prev_height:
 		body_collision.shape.height = _cur_height
 		self.body.mesh.height = _cur_height
-		var ofs: float = -(_def_height - _cur_height) * 0.5
-		body_collision.position.y = ofs
-		self.body.position.y = ofs
+		var y: float = _cur_height * 0.5
+		body_collision.position.y = y
+		self.body.position.y = y
 
 func _wants_to_crouch() -> bool:
 	return false
