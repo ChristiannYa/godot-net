@@ -2,7 +2,6 @@ class_name PlayerSelf
 extends Player
 
 func _ready():
-	super._ready()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent):

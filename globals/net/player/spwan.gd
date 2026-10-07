@@ -34,7 +34,7 @@ func _handle_spawn(resr: PackedScene, states: Dictionary, sid: int):
 			resr,
 			func(player: Player):
 				player.sid = sid
-				player.player_color = _get_color(state)
+				player.color = _get_color(state)
 		)
 		_spawned[sid] = true
 
