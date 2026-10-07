@@ -43,7 +43,7 @@ func _handle_pkt(pkt: Dictionary, is_sync: bool):
 		_udp_peer.put_packet(UdpAck.encode_ack(pkt_id))
 		if _rel.is_pkt_seen(pkt_id): return # No need to re-process packet
 
-	if pkt.has("DevIsNewPlayer"): SignalHub.player_sid_sig.emit(sid)
+	if pkt.has("DevIsNewPlayer"): SignalHub.emit_player_sid(sid)
 
 	_state.reg_player(sid, is_sync)
 
