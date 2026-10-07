@@ -4,18 +4,1292 @@
 albedo_color = Color(0.16083357, 0.16327313, 0.1568655, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ymre3"]
-size = Vector3(60, 0.2, 60)
+size = Vector3(8, 0.2, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bfk6g"]
-size = Vector3(30, 0.2, 30)
+size = Vector3(8, 0.2, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0xbj"]
+albedo_color = Color(0.2, 0.25490198, 0.27058825, 1)
 
 [node name="Floor" type="Node3D" unique_id=1332831918]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1341202248]
+[node name="TileMesh_a_1" type="MeshInstance3D" parent="." unique_id=338147248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 19.993996)
 material_override = SubResource("StandardMaterial3D_bfk6g")
 mesh = SubResource("BoxMesh_ymre3")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1589983386]
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_1" unique_id=1717644978]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1542448632]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_1/StaticBody3D" unique_id=45835093]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_2" type="MeshInstance3D" parent="." unique_id=1102750835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_2" unique_id=577407431]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_2/StaticBody3D" unique_id=1783288833]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_3" type="MeshInstance3D" parent="." unique_id=2136240635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_3" unique_id=510473079]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_3/StaticBody3D" unique_id=857558194]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_4" type="MeshInstance3D" parent="." unique_id=29707458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_4" unique_id=134340862]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_4/StaticBody3D" unique_id=244795267]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_5" type="MeshInstance3D" parent="." unique_id=305295684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_5" unique_id=758682933]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_5/StaticBody3D" unique_id=222239498]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_6" type="MeshInstance3D" parent="." unique_id=922456069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_6" unique_id=1807984727]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_6/StaticBody3D" unique_id=1891877504]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_7" type="MeshInstance3D" parent="." unique_id=696375879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_7" unique_id=1321170250]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_7/StaticBody3D" unique_id=891961224]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_8" type="MeshInstance3D" parent="." unique_id=1047144769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_8" unique_id=1799695194]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_8/StaticBody3D" unique_id=1357395639]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_1" type="MeshInstance3D" parent="." unique_id=526369962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_1" unique_id=1334584900]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_1/StaticBody3D" unique_id=1257772394]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_5" type="MeshInstance3D" parent="." unique_id=895692320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_5" unique_id=1164293756]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_5/StaticBody3D" unique_id=2098850485]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_6" type="MeshInstance3D" parent="." unique_id=600382459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_6" unique_id=1785826746]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_6/StaticBody3D" unique_id=627316997]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_7" type="MeshInstance3D" parent="." unique_id=831732987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_7" unique_id=1229878148]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_7/StaticBody3D" unique_id=388892432]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_8" type="MeshInstance3D" parent="." unique_id=555730974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_8" unique_id=1079529973]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_8/StaticBody3D" unique_id=413744168]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_2" type="MeshInstance3D" parent="." unique_id=1506727205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_2" unique_id=505390204]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_2/StaticBody3D" unique_id=451361883]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_3" type="MeshInstance3D" parent="." unique_id=2111940223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_3" unique_id=473296109]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_3/StaticBody3D" unique_id=490557016]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_4" type="MeshInstance3D" parent="." unique_id=580291459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_4" unique_id=380353059]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_4/StaticBody3D" unique_id=1369263615]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_9" type="MeshInstance3D" parent="." unique_id=1912877926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_9" unique_id=35510532]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_9/StaticBody3D" unique_id=1373489088]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_10" type="MeshInstance3D" parent="." unique_id=722257166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_10" unique_id=1313294283]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_10/StaticBody3D" unique_id=288903789]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_11" type="MeshInstance3D" parent="." unique_id=1952109393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_11" unique_id=464646520]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_11/StaticBody3D" unique_id=1387179991]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_12" type="MeshInstance3D" parent="." unique_id=1848181062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_12" unique_id=1502455263]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_12/StaticBody3D" unique_id=1107992108]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_13" type="MeshInstance3D" parent="." unique_id=386665899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_13" unique_id=901942882]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_13/StaticBody3D" unique_id=317288943]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_14" type="MeshInstance3D" parent="." unique_id=864685466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_14" unique_id=1525548265]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_14/StaticBody3D" unique_id=667869581]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_15" type="MeshInstance3D" parent="." unique_id=1012232429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_15" unique_id=1858164547]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_15/StaticBody3D" unique_id=1160126816]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_16" type="MeshInstance3D" parent="." unique_id=944586162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_16" unique_id=839073209]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_16/StaticBody3D" unique_id=1851652848]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_9" type="MeshInstance3D" parent="." unique_id=762843488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_9" unique_id=1142906367]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_9/StaticBody3D" unique_id=193704793]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_10" type="MeshInstance3D" parent="." unique_id=1770053860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_10" unique_id=1091447087]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_10/StaticBody3D" unique_id=1955095673]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_11" type="MeshInstance3D" parent="." unique_id=1951360279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_11" unique_id=92376692]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_11/StaticBody3D" unique_id=1130214131]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_12" type="MeshInstance3D" parent="." unique_id=1760477093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_12" unique_id=496306316]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_12/StaticBody3D" unique_id=1534448715]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_13" type="MeshInstance3D" parent="." unique_id=937049705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_13" unique_id=194730123]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_13/StaticBody3D" unique_id=1897502095]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_14" type="MeshInstance3D" parent="." unique_id=1199402200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_14" unique_id=405451364]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_14/StaticBody3D" unique_id=718878624]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_15" type="MeshInstance3D" parent="." unique_id=1498547839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_15" unique_id=1739695973]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_15/StaticBody3D" unique_id=225724500]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_16" type="MeshInstance3D" parent="." unique_id=1534846161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_16" unique_id=481941332]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_16/StaticBody3D" unique_id=664676197]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_17" type="MeshInstance3D" parent="." unique_id=2142603401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_17" unique_id=779881199]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_17/StaticBody3D" unique_id=2122090806]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_18" type="MeshInstance3D" parent="." unique_id=1969532114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_18" unique_id=486182923]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_18/StaticBody3D" unique_id=164080311]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_19" type="MeshInstance3D" parent="." unique_id=341569641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_19" unique_id=1672886342]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_19/StaticBody3D" unique_id=1279498123]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_20" type="MeshInstance3D" parent="." unique_id=871843799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_20" unique_id=964560956]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_20/StaticBody3D" unique_id=1777989]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_21" type="MeshInstance3D" parent="." unique_id=1094699347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_21" unique_id=1070936170]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_21/StaticBody3D" unique_id=762487236]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_22" type="MeshInstance3D" parent="." unique_id=687499781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_22" unique_id=1128436595]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_22/StaticBody3D" unique_id=1840146528]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_23" type="MeshInstance3D" parent="." unique_id=537093441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_23" unique_id=691360813]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_23/StaticBody3D" unique_id=361933953]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_24" type="MeshInstance3D" parent="." unique_id=840510392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_24" unique_id=1928079199]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_24/StaticBody3D" unique_id=561249846]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_17" type="MeshInstance3D" parent="." unique_id=529336913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_17" unique_id=1475095668]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_17/StaticBody3D" unique_id=1630303730]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_18" type="MeshInstance3D" parent="." unique_id=142358959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_18" unique_id=1892071971]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_18/StaticBody3D" unique_id=1828534694]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_19" type="MeshInstance3D" parent="." unique_id=1898300680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_19" unique_id=1720469386]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_19/StaticBody3D" unique_id=2073990616]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_20" type="MeshInstance3D" parent="." unique_id=1734179212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_20" unique_id=1319751206]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_20/StaticBody3D" unique_id=572241580]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_21" type="MeshInstance3D" parent="." unique_id=888489530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_21" unique_id=421988507]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_21/StaticBody3D" unique_id=109722783]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_22" type="MeshInstance3D" parent="." unique_id=1838357364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_22" unique_id=920409855]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_22/StaticBody3D" unique_id=933352360]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_23" type="MeshInstance3D" parent="." unique_id=1175314826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_23" unique_id=1322002061]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_23/StaticBody3D" unique_id=1865085752]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_24" type="MeshInstance3D" parent="." unique_id=103106208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_24" unique_id=1362560607]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_24/StaticBody3D" unique_id=1981355837]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_25" type="MeshInstance3D" parent="." unique_id=953097718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_25" unique_id=1168222848]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_25/StaticBody3D" unique_id=1238109374]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_26" type="MeshInstance3D" parent="." unique_id=1997623368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_26" unique_id=1654988061]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_26/StaticBody3D" unique_id=2067394708]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_27" type="MeshInstance3D" parent="." unique_id=1192585203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_27" unique_id=897679803]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_27/StaticBody3D" unique_id=239262215]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_28" type="MeshInstance3D" parent="." unique_id=1490046410]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_28" unique_id=2171685]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_28/StaticBody3D" unique_id=107985368]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_29" type="MeshInstance3D" parent="." unique_id=1707455347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_29" unique_id=1718242212]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_29/StaticBody3D" unique_id=214551169]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_30" type="MeshInstance3D" parent="." unique_id=307956845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_30" unique_id=1496285266]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_30/StaticBody3D" unique_id=1225983434]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_31" type="MeshInstance3D" parent="." unique_id=419414692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_31" unique_id=604257869]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_31/StaticBody3D" unique_id=133718518]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_32" type="MeshInstance3D" parent="." unique_id=203101607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_32" unique_id=1992792241]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_32/StaticBody3D" unique_id=611785339]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_25" type="MeshInstance3D" parent="." unique_id=1336487343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_25" unique_id=364608464]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_25/StaticBody3D" unique_id=887779177]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_26" type="MeshInstance3D" parent="." unique_id=942335355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_26" unique_id=618390578]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_26/StaticBody3D" unique_id=1539242945]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_27" type="MeshInstance3D" parent="." unique_id=1924225071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_27" unique_id=1222752838]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_27/StaticBody3D" unique_id=633392959]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_28" type="MeshInstance3D" parent="." unique_id=1865189638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_28" unique_id=1431051427]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_28/StaticBody3D" unique_id=569469705]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_29" type="MeshInstance3D" parent="." unique_id=578770093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_29" unique_id=915037695]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_29/StaticBody3D" unique_id=1378898233]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_30" type="MeshInstance3D" parent="." unique_id=547461649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_30" unique_id=2098471161]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_30/StaticBody3D" unique_id=310124823]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_31" type="MeshInstance3D" parent="." unique_id=972738812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_31" unique_id=627587865]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_31/StaticBody3D" unique_id=576749167]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_32" type="MeshInstance3D" parent="." unique_id=2029510958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_32" unique_id=1001395841]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_32/StaticBody3D" unique_id=1656358997]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_33" type="MeshInstance3D" parent="." unique_id=978089842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_33" unique_id=541271952]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_33/StaticBody3D" unique_id=1867096638]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_34" type="MeshInstance3D" parent="." unique_id=1689544054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_34" unique_id=419797434]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_34/StaticBody3D" unique_id=1073470281]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_35" type="MeshInstance3D" parent="." unique_id=886274527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_35" unique_id=1992565309]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_35/StaticBody3D" unique_id=26803294]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_36" type="MeshInstance3D" parent="." unique_id=1766307672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_36" unique_id=1800846904]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_36/StaticBody3D" unique_id=348172548]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_37" type="MeshInstance3D" parent="." unique_id=451267155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_37" unique_id=1791555123]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_37/StaticBody3D" unique_id=2005878524]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_38" type="MeshInstance3D" parent="." unique_id=699257286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_38" unique_id=2063816820]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_38/StaticBody3D" unique_id=1456730646]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_39" type="MeshInstance3D" parent="." unique_id=1528386087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_39" unique_id=1453798216]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_39/StaticBody3D" unique_id=868219916]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_40" type="MeshInstance3D" parent="." unique_id=636523300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_40" unique_id=1033282123]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_40/StaticBody3D" unique_id=1927041488]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_33" type="MeshInstance3D" parent="." unique_id=110899152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_33" unique_id=1939487689]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_33/StaticBody3D" unique_id=1354560777]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_34" type="MeshInstance3D" parent="." unique_id=1483176818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_34" unique_id=1710623922]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_34/StaticBody3D" unique_id=969340480]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_35" type="MeshInstance3D" parent="." unique_id=1740106474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_35" unique_id=191209731]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_35/StaticBody3D" unique_id=839492646]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_36" type="MeshInstance3D" parent="." unique_id=675336989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_36" unique_id=411726239]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_36/StaticBody3D" unique_id=710462573]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_37" type="MeshInstance3D" parent="." unique_id=799310953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.041386, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_37" unique_id=1947729692]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_37/StaticBody3D" unique_id=188835868]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_38" type="MeshInstance3D" parent="." unique_id=1523449347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_38" unique_id=1837862317]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_38/StaticBody3D" unique_id=624189698]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_39" type="MeshInstance3D" parent="." unique_id=769780108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_39" unique_id=492939631]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_39/StaticBody3D" unique_id=233840422]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_40" type="MeshInstance3D" parent="." unique_id=1136857632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.041386, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_40" unique_id=1442217159]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_40/StaticBody3D" unique_id=487507670]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_41" type="MeshInstance3D" parent="." unique_id=598727568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_41" unique_id=1235245839]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_41/StaticBody3D" unique_id=612995496]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_42" type="MeshInstance3D" parent="." unique_id=1738473967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_42" unique_id=42353368]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_42/StaticBody3D" unique_id=95198646]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_43" type="MeshInstance3D" parent="." unique_id=1707190098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_43" unique_id=1603297923]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_43/StaticBody3D" unique_id=1352196895]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_44" type="MeshInstance3D" parent="." unique_id=1326080450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_44" unique_id=536861213]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_44/StaticBody3D" unique_id=1170949871]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_45" type="MeshInstance3D" parent="." unique_id=2079425698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_45" unique_id=1817844975]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_45/StaticBody3D" unique_id=458930344]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_46" type="MeshInstance3D" parent="." unique_id=1651003192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_46" unique_id=1159604177]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_46/StaticBody3D" unique_id=955778855]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_47" type="MeshInstance3D" parent="." unique_id=1152868288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_47" unique_id=1927131719]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_47/StaticBody3D" unique_id=2063839480]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_48" type="MeshInstance3D" parent="." unique_id=152088886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_48" unique_id=1816625498]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_48/StaticBody3D" unique_id=965847084]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_41" type="MeshInstance3D" parent="." unique_id=1817572128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_41" unique_id=1966628685]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_41/StaticBody3D" unique_id=159307803]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_42" type="MeshInstance3D" parent="." unique_id=1170780629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_42" unique_id=2046168245]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_42/StaticBody3D" unique_id=478981766]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_43" type="MeshInstance3D" parent="." unique_id=528217327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_43" unique_id=1067261729]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_43/StaticBody3D" unique_id=1684962519]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_44" type="MeshInstance3D" parent="." unique_id=147939922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_44" unique_id=1503624400]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_44/StaticBody3D" unique_id=338982683]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_45" type="MeshInstance3D" parent="." unique_id=675222745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.041386, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_45" unique_id=437027620]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_45/StaticBody3D" unique_id=1825536120]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_46" type="MeshInstance3D" parent="." unique_id=185406704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_46" unique_id=28126068]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_46/StaticBody3D" unique_id=1014053460]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_47" type="MeshInstance3D" parent="." unique_id=164034063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_47" unique_id=1885693421]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_47/StaticBody3D" unique_id=82872596]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_48" type="MeshInstance3D" parent="." unique_id=838860018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0413857, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_48" unique_id=1794849605]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_48/StaticBody3D" unique_id=2073832314]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_49" type="MeshInstance3D" parent="." unique_id=562271343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_49" unique_id=1302874080]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_49/StaticBody3D" unique_id=799532778]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_50" type="MeshInstance3D" parent="." unique_id=1672669912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_50" unique_id=1961512797]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_50/StaticBody3D" unique_id=2141298452]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_51" type="MeshInstance3D" parent="." unique_id=423728655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_51" unique_id=1640433151]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_51/StaticBody3D" unique_id=597085061]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_52" type="MeshInstance3D" parent="." unique_id=2020777928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_52" unique_id=1080550208]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_52/StaticBody3D" unique_id=10405555]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_53" type="MeshInstance3D" parent="." unique_id=790023417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_53" unique_id=631078843]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_53/StaticBody3D" unique_id=860745794]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_54" type="MeshInstance3D" parent="." unique_id=257322400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_54" unique_id=1701097648]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_54/StaticBody3D" unique_id=1590553883]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_55" type="MeshInstance3D" parent="." unique_id=1355268942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_55" unique_id=1793766007]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_55/StaticBody3D" unique_id=189577257]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_56" type="MeshInstance3D" parent="." unique_id=274890792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_56" unique_id=1191008630]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_56/StaticBody3D" unique_id=883502515]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_49" type="MeshInstance3D" parent="." unique_id=112518886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_49" unique_id=1606621142]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_49/StaticBody3D" unique_id=1732805973]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_50" type="MeshInstance3D" parent="." unique_id=298974883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_50" unique_id=219340054]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_50/StaticBody3D" unique_id=407528072]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_51" type="MeshInstance3D" parent="." unique_id=1875307708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_51" unique_id=1924488278]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_51/StaticBody3D" unique_id=651912023]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_52" type="MeshInstance3D" parent="." unique_id=566741746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_52" unique_id=2040593511]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_52/StaticBody3D" unique_id=146611321]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_53" type="MeshInstance3D" parent="." unique_id=1725964140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9586143, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_53" unique_id=2006169695]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_53/StaticBody3D" unique_id=1248584891]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_54" type="MeshInstance3D" parent="." unique_id=167022244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_54" unique_id=1144771099]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_54/StaticBody3D" unique_id=155883491]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_55" type="MeshInstance3D" parent="." unique_id=1235733150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_55" unique_id=1765518581]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_55/StaticBody3D" unique_id=2026968994]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_56" type="MeshInstance3D" parent="." unique_id=1953498607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.958614, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_56" unique_id=2047937729]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_56/StaticBody3D" unique_id=779116629]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_57" type="MeshInstance3D" parent="." unique_id=1160623873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_57" unique_id=1034141675]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_57/StaticBody3D" unique_id=406981920]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_58" type="MeshInstance3D" parent="." unique_id=1639478644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_58" unique_id=732020549]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_58/StaticBody3D" unique_id=1972406211]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_59" type="MeshInstance3D" parent="." unique_id=221961812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_59" unique_id=794323556]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_59/StaticBody3D" unique_id=1113053635]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_60" type="MeshInstance3D" parent="." unique_id=640488462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_60" unique_id=1560029204]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_60/StaticBody3D" unique_id=1869405162]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_61" type="MeshInstance3D" parent="." unique_id=1261551091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_61" unique_id=525608028]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_61/StaticBody3D" unique_id=1045706393]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_62" type="MeshInstance3D" parent="." unique_id=1930292442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_62" unique_id=1528023153]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_62/StaticBody3D" unique_id=1554037766]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_63" type="MeshInstance3D" parent="." unique_id=194239087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_63" unique_id=562239915]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_63/StaticBody3D" unique_id=800955536]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_a_64" type="MeshInstance3D" parent="." unique_id=1088180787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_bfk6g")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_a_64" unique_id=893714378]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_a_64/StaticBody3D" unique_id=1762333946]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_57" type="MeshInstance3D" parent="." unique_id=1608350512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 27.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_57" unique_id=966558711]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_57/StaticBody3D" unique_id=1249989731]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_58" type="MeshInstance3D" parent="." unique_id=411793379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 19.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_58" unique_id=1481178262]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_58/StaticBody3D" unique_id=1821532386]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_59" type="MeshInstance3D" parent="." unique_id=684690318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, 3.9939957)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_59" unique_id=1985302153]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_59/StaticBody3D" unique_id=766601160]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_60" type="MeshInstance3D" parent="." unique_id=1531292433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -12.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_60" unique_id=133659315]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_60/StaticBody3D" unique_id=1125040860]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_61" type="MeshInstance3D" parent="." unique_id=2100616657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.958614, 0, -28.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_61" unique_id=959473766]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_61/StaticBody3D" unique_id=1913098389]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_62" type="MeshInstance3D" parent="." unique_id=260353491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, 11.993996)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_62" unique_id=375991835]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_62/StaticBody3D" unique_id=1975359927]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_63" type="MeshInstance3D" parent="." unique_id=2068058245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -4.0060043)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_63" unique_id=1195142311]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_63/StaticBody3D" unique_id=1744754699]
+shape = SubResource("BoxShape3D_bfk6g")
+
+[node name="TileMesh_b_64" type="MeshInstance3D" parent="." unique_id=842003553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.958614, 0, -20.006004)
+material_override = SubResource("StandardMaterial3D_w0xbj")
+mesh = SubResource("BoxMesh_ymre3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileMesh_b_64" unique_id=221869081]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileMesh_b_64/StaticBody3D" unique_id=509587616]
 shape = SubResource("BoxShape3D_bfk6g")
