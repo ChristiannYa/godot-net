@@ -11,7 +11,12 @@ const _GRAVITY := 30.0
 @onready var body: MeshInstance3D = $Body
 @onready var sid_label: Label3D = $SidLabel
 
+var utils: PlayerUtils
+
 var sid: int = -1
+
+func _init():
+	utils = PlayerUtils.new(self)
 
 func _ready():
 	_c_apply_player_color()

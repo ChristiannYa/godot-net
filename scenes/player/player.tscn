@@ -26,6 +26,7 @@ height = 0.24
 
 [node name="Player" type="CharacterBody3D" unique_id=189855238]
 script = ExtResource("1_8afob")
+player_color = null
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1952125340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
