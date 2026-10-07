@@ -1,7 +1,7 @@
 class_name PlayerUtils
-extends Node
+extends RefCounted
 
-@onready var net: PlayerUtilsNet
+var net: PlayerUtilsNet
 
 func _init(player: Player):
 	net = PlayerUtilsNet.new(player)
