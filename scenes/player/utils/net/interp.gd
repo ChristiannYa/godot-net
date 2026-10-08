@@ -1,20 +1,25 @@
 class_name PlayerUtilsNetInterp
 extends PlayerUtilsProvider
 
-## How far in the past remote players are drawn
 const _DELAY_MS := 100
+const _SNAPSHOT_HZ := 60
 
-const _HISTORY := 16
+## Snapshots that may arrive at once after a stall
+const _BURST_ALLOWANCE := 10
 
-var _l: Logging = Logging.new()
+## Snapshots inside the delay window, plus room for a burst
+@warning_ignore("integer_division")
+const _HISTORY := _DELAY_MS * _SNAPSHOT_HZ / 1000 + _BURST_ALLOWANCE
 
-## Oldest first: [{ "t": seconds, "x": float, "z": float }, ...]
-var _history: Array[Dictionary] = []
+class Snapshot:
+	var t: float
+	var x: float
+	var z: float
 
-var _stat_t := 0.0
-var _stat_count := 0
-var _stat_max_gap := 0.0
-var _stat_slow := 0
+	func _init(t_: float, x_: float, z_: float) -> void:
+		t = t_; x = x_; z = z_
+
+var _history: Array[Snapshot] = []
 
 func push_server_loc(states: Dictionary):
 	var state: Dictionary = states.get(p.sid, {})
@@ -24,48 +29,42 @@ func push_server_loc(states: Dictionary):
 		state["LocationX"],
 		state["LocationZ"]
 	)
-	_history.append({
-		"t": Time.get_ticks_usec() / 1_000_000.0,
-		"x": loc.x,
-		"z": loc.z,
-	})
+	_history.append(Snapshot.new(
+		Time.get_ticks_usec() / 1_000_000.0,
+		loc.x,
+		loc.z
+	))
 	if _history.size() > _HISTORY: _history.pop_front()
 
-	# TEMPORARY: remove after test
-	if _history.size() >= 2:
-		var now: float = _history[-1]["t"]
-		var gap: float = now - _history[-2]["t"]
-		_stat_count += 1
-		_stat_max_gap = maxf(_stat_max_gap, gap)
-		if gap > 0.04: _stat_slow += 1
-		if now - _stat_t >= 1.0:
-			_l.log("snaps=%d max_gap=%.0f ms slow=%d" % [_stat_count, _stat_max_gap * 1000.0, _stat_slow])
-			_stat_t = now
-			_stat_count = 0
-			_stat_max_gap = 0.0
-			_stat_slow = 0
-
-
+## Runs each frame, drawing a delayed player's position
 func apply():
 	if _history.is_empty(): return
 
+	# Moment in the past being shown on the screen (now - delay)
 	var render_t: float = Time.get_ticks_usec() / 1_000_000.0 - _DELAY_MS / 1000.0
-	var first: Dictionary = _history[0]
-	var last: Dictionary = _history[-1]
+
+	var oldest: Snapshot = _history[0]
+	var newest: Snapshot = _history[-1]
 
 	# No snapshot old enough or new enough: hold the nearest one
-	if render_t <= first["t"]: return _place(first["x"], first["z"])
-	if render_t >= last["t"]: return _place(last["x"], last["z"])
+	if render_t <= oldest.t: return _place(oldest.x, oldest.z)
+	if render_t >= newest.t: return _place(newest.x, newest.z)
 
-	# Find the two snapshots around render_t and slide between them
+	# Find the 2 snapshots around render_t and slide between them
 	for i in range(_history.size() - 1):
-		var a: Dictionary = _history[i]
-		var b: Dictionary = _history[i + 1]
-		if render_t > b["t"]: continue
+		var l: Snapshot = _history[i]
+		var r: Snapshot = _history[i + 1]
+		if render_t > r.t:
+			# This pair is entirely before render_t, so try the next one
+			continue
 
-		var span: float = b["t"] - a["t"]
-		var w: float = (render_t - a["t"]) / span if span > 0.0 else 1.0
-		return _place(lerpf(a["x"], b["x"], w), lerpf(a["z"], b["z"], w))
+		var elapsed: float = r.t - l.t
+
+		# Fraction of the way from l to r
+		# `render_t - r.t` = time since the older snapsthot
+		var w: float = (render_t - l.t) / elapsed if elapsed > 0.0 else 1.0
+
+		return _place(lerpf(l.x, r.x, w), lerpf(l.z, r.z, w))
 
 func _place(x: float, z: float):
 	p.global_position.x = x
