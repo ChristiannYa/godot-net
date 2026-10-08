@@ -27,9 +27,9 @@ func data(raw_pkt: PackedByteArray):
 		UdpCodec.DEC_BATCH:
 			var records: Array = _udp_codec.decode_batch(raw_pkt)
 			for pkt in records: _handle_pkt(pkt, true)
+			SignalHub.emit_player_snapshot_sig(_state.player_states())
 
-	var player_states_capture = _state.player_states()
-	SignalHub.emit_player_states_live(player_states_capture)
+	SignalHub.emit_player_states_live(_state.player_states())
 
 ## `pkt`: field name -> value
 func _handle_pkt(pkt: Dictionary, is_sync: bool):
