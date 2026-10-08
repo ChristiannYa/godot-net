@@ -61,7 +61,7 @@ func apply():
 		var elapsed: float = r.t - l.t
 
 		# Fraction of the way from l to r
-		# `render_t - r.t` = time since the older snapsthot
+		# `render_t - l.t` = time since the older snapsthot
 		var w: float = (render_t - l.t) / elapsed if elapsed > 0.0 else 1.0
 
 		return _place(lerpf(l.x, r.x, w), lerpf(l.z, r.z, w))
