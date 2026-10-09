@@ -27,26 +27,39 @@ func data(raw_pkt: PackedByteArray):
 		UdpCodec.DEC_BATCH:
 			var records: Array = _udp_codec.decode_batch(raw_pkt)
 			for pkt in records: _handle_pkt(pkt, true)
-			SignalHub.emit_player_snapshot_sig(_state.player_states())
 
 	SignalHub.emit_player_states_live(_state.player_states())
 
+func snapshot(raw_pkt: PackedByteArray):
+	var ss: Dictionary = _udp_codec.decode_snapshot(raw_pkt)
+	if ss.is_empty(): return
+
+	# TMP: one line per second, the tick should grow by 60 each time
+	if ss["tick"] % 60 == 0: print("tick=", ss["tick"])
+
+	for pkt: Dictionary in ss["records"]: _handle_pkt(pkt, true)
+	SignalHub.emit_player_snapshot_sig(_state.player_states())
+
+	# A controlled player is also moved by this signal. Skipping it would
+	# freeze the player
+	SignalHub.emit_player_states_live(_state.player_states())
+
 ## `pkt`: field name -> value
-func _handle_pkt(pkt: Dictionary, is_sync: bool):
-	var sid: int = pkt.get("DevSessionId")
+func _handle_pkt(raw_pkt: Dictionary, is_sync: bool):
+	var sid: int = raw_pkt.get("DevSessionId")
 
 	# Dropped: stale/out-of-order packet
-	if !_state.accept_seq(sid, pkt): return 
+	if !_state.accept_seq(sid, raw_pkt): return 
 
-	if pkt.has("DevPacketId"):
-		var pkt_id: int = pkt["DevPacketId"]
+	if raw_pkt.has("DevPacketId"):
+		var pkt_id: int = raw_pkt["DevPacketId"]
 		_udp_peer.put_packet(UdpAck.encode_ack(pkt_id))
 		if _rel.is_pkt_seen(pkt_id): return # No need to re-process packet
 
-	if pkt.has("DevIsNewPlayer"): SignalHub.emit_player_sid(sid)
+	if raw_pkt.has("DevIsNewPlayer"): SignalHub.emit_player_sid(sid)
 
 	_state.reg_player(sid, is_sync)
 
-	for field_name: String in pkt:
+	for field_name: String in raw_pkt:
 		if !field_name.begins_with("Dev"):
-			_state.save_field(sid, field_name, pkt[field_name])
+			_state.save_field(sid, field_name, raw_pkt[field_name])

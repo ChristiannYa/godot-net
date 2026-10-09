@@ -23,7 +23,11 @@ func _ready():
 	_udp_peer.set_dest_address("10.0.0.4", 34254)
 	self.send_input("DevPing", 1)
 
-func _process(_delta: float):
+func _process(delta: float):
+	var waiting := _udp_peer.get_available_packet_count()
+	if waiting > 0:
+		print("frame=%.1f ms waiting=%d" % [delta * 1000.0, waiting])
+
 	while _udp_peer.get_available_packet_count() > 0:
 		var pkt = _udp_peer.get_packet()
 
@@ -33,6 +37,7 @@ func _process(_delta: float):
 		match pkt[0]:
 			UdpCodec.PKT_ACK: _pkt_handler.ack(pkt)
 			UdpCodec.PKT_DATA: _pkt_handler.data(pkt)
+			UdpCodec.PKT_SNAPSHOT: _pkt_handler.snapshot(pkt)
 
 	_tick_rel()
 
