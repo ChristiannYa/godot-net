@@ -13,22 +13,13 @@ var _history := (
 	)
 )
 
-# TMP
-var _last_s := 0.0
 
-
-func push_server_loc(states: Dictionary):
+func push_server_loc(states: Dictionary, ss_time_s: float):
 	var loc: XZ = p.utils.net.movement.get_server_pos(states)
 	if loc == null:
 		return
 
-	var now_s := _now_s()
-	_history.push(Snapshot.new(now_s, loc.x, loc.z))
-
-	# TMP
-	if _last_s > 0.0:
-		print("gap: %.1f ms" % ((now_s - _last_s) * 1000.0))
-	_last_s = now_s
+	_history.push(Snapshot.new(ss_time_s, loc.x, loc.z))
 
 
 ## Runs each frame, drawing a delayed player's position

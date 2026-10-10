@@ -6,9 +6,6 @@ var _clock := ServerClock.new()
 var _state: NetState
 var _rel: NetReliable
 
-# TMP
-var _last_ss_t := 0.0
-
 
 func _init(
 	udp_peer: PacketPeerUDP,
@@ -48,16 +45,12 @@ func snapshot(raw_pkt: PackedByteArray):
 	var now_s := _now_s()
 	if !_clock.accept(ss["tick"], now_s):
 		return
-	var ss_t := _clock.cur_ss_time()
-
-	# TMP: the gap between snapshot times should be an even 16.7 ms
-	if _last_ss_t > 0.0:
-		print("snap gap: %.1f ms" % ((ss_t - _last_ss_t) * 1000.0))
-	_last_ss_t = ss_t
 
 	for pkt: Dictionary in ss["records"]:
 		_handle_pkt(pkt, true)
-	SignalHub.emit_player_snapshot_sig(_state.player_states())
+	SignalHub.emit_player_snapshot_sig(
+		_state.player_states(), _clock.cur_ss_time()
+	)
 
 	# A controlled player is also moved by this signal. Skipping it would
 	# freeze the player
