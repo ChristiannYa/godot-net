@@ -31,7 +31,7 @@ func cam_yaw() -> float:
 
 func _cam_handle_mouse_control(x: float, y: float):
 	camera_controller.rotate_y(-x * _MOUSE_SENS)
-	body.rotation.y = camera_controller.rotation.y
+	face(camera_controller.rotation.y)
 	spring_arm.rotation.x = clamp(
 		spring_arm.rotation.x - y * _MOUSE_SENS,
 		_CAM_PITCH_MIN,

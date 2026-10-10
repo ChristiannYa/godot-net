@@ -34,7 +34,7 @@ func apply():
 
 	p.global_position.x = pose.x
 	p.global_position.z = pose.z
-	p.rotation.y = pose.yaw
+	p.face(pose.yaw)
 
 
 func _now_s() -> float:
