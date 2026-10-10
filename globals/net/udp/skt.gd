@@ -28,11 +28,7 @@ func _ready():
 	self.send_input("DevPing", 1)
 
 
-func _process(delta: float):
-	var waiting := _udp_peer.get_available_packet_count()
-	if waiting > 0:
-		print("frame=%.1f ms waiting=%d" % [delta * 1000.0, waiting])
-
+func _process(_delta: float):
 	while _udp_peer.get_available_packet_count() > 0:
 		var pkt = _udp_peer.get_packet()
 
@@ -66,8 +62,10 @@ func send_input_rel(field_name: String, val: int):
 	_udp_peer.put_packet(pkt)
 
 
-func send_intent(mv: Vector2):
-	var pkt := udp_codec.encode_intent(_intent_seq, mv.x, mv.y, 0.0, false, false)
+func send_intent(mv: Vector2, yaw: float):
+	var pkt := udp_codec.encode_intent(
+		_intent_seq, mv.x, mv.y, yaw, false, false
+	)
 	_udp_peer.put_packet(pkt)
 
 	# 0xFF wraps the counter at 256 so it fits the protocol's seq 8-bit counter
