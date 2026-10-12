@@ -16,6 +16,8 @@ var _pkt_handler: PacketHandler = (
 	)
 )
 
+var _oneshot_field_cts: OneShot = OneShot.new()
+
 # If the counter lived on the player node and that node were ever be freed and
 # recreated while the session continued, it would restart at 0 and the server
 # would drop everything as stale
@@ -63,13 +65,21 @@ func send_input_rel(field_name: String, val: int):
 
 
 func send_intent(mv: Vector2, yaw: float):
+	var jump_ct := _oneshot_field_cts.ct("jump")
+	if jump_ct == null:
+		return
+
 	var pkt := udp_codec.encode_intent(
-		_intent_seq, mv.x, mv.y, yaw, false, false
+		_intent_seq, mv.x, mv.y, yaw, false, jump_ct
 	)
 	_udp_peer.put_packet(pkt)
 
 	# 0xFF wraps the counter at 256 so it fits the protocol's seq 8-bit counter
 	_intent_seq = (_intent_seq + 1) & 0xFF
+
+
+func reg_oneshot(field: String):
+	_oneshot_field_cts.reg(field)
 
 
 func is_synced(sid: int) -> bool:

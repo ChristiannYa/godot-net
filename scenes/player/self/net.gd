@@ -14,3 +14,8 @@ func _physics_process(_delta: float):
 		Input.get_vector("m_left", "m_right", "m_fwd", "m_back"),
 		player.cam_yaw()
 	)
+
+
+func _input(event: InputEvent):
+	if event.is_action_pressed("m_jump"):
+		UdpSkt.reg_oneshot("jump")
