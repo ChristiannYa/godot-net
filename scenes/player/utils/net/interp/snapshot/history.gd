@@ -48,7 +48,7 @@ func pose_at(at_t: float) -> Pose:
 
 
 static func _of(snap: Snapshot) -> Pose:
-	return Pose.new(snap.x, snap.z, snap.yaw)
+	return Pose.new(snap.x, snap.y, snap.z, snap.yaw)
 
 
 static func _blend(older: Snapshot, newer: Snapshot, at_t: float) -> Pose:
@@ -59,6 +59,7 @@ static func _blend(older: Snapshot, newer: Snapshot, at_t: float) -> Pose:
 
 	return Pose.new(
 		lerpf(older.x, newer.x, w),
+		lerpf(older.y, newer.y, w),
 		lerpf(older.z, newer.z, w),
 		lerp_angle(older.yaw, newer.yaw, w)
 	)
