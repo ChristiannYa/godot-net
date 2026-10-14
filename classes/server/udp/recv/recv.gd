@@ -47,7 +47,8 @@ func _handler(raw_pkt: Dictionary, is_sync: bool):
 	if raw_pkt.has("DevIsNewPlayer"):
 		SignalHub.emit_player_sid(sid)
 
-	_net_state.reg_player(sid, is_sync)
+	if !_net_state.players().has(sid):
+		_net_state.reg_player(sid, is_sync)
 
 	for field_name: String in raw_pkt:
 		if !field_name.begins_with("Dev"):
