@@ -2,6 +2,6 @@
 .godot/
 /android/
 
-globals/net/bin/*.so
-globals/net/bin/*.dll
-globals/net/bin/*.dylib
+globals/server/udp/bin/*.so
+globals/server/udp/bin/*.dll
+globals/server/udp/bin/*.dylib

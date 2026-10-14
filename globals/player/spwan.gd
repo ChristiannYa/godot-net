@@ -51,14 +51,14 @@ func _handle_spawn(resr: PackedScene, states: Dictionary, sid: int):
 
 
 func _get_spawn_pos(state: Dictionary, sid: int) -> Vector3:
-	var loc: Vector3 = UdpSkt.udp_codec.decode_loc(
+	var loc: Vector3 = UdpClient.udp_codec.decode_loc(
 		state["LocationX"], state["LocationZ"]
 	)
-	var y = 1.5 if UdpSkt.is_synced(sid) else 10.5
+	var y = 1.5 if UdpClient.is_synced(sid) else 10.5
 	return Vector3(loc.x, y, loc.z)
 
 
 func _get_color(state: Dictionary) -> Color:
-	return UdpSkt.udp_codec.decode_hsv(
+	return UdpClient.udp_codec.decode_hsv(
 		state["ColorH"], state["ColorS"], state["ColorV"]
 	)

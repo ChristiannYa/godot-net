@@ -11,7 +11,7 @@ func _init(net_sate: NetState, handler: Callable):
 
 
 func recv(raw_pkt: PackedByteArray):
-	var ss: Dictionary = UdpSkt.udp_codec.decode_snapshot(raw_pkt)
+	var ss: Dictionary = UdpClient.udp_codec.decode_snapshot(raw_pkt)
 	if ss.is_empty():
 		return
 

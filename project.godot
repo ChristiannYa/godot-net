@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 SignalHub="*uid://bxai87f0e21br"
 Spwan="*uid://lkquruhpiobg"
-UdpSkt="*uid://dtpjtx7hej458"
+UdpClient="*uid://b8gwtjtmgxgns"
 
 [display]
 
