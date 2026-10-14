@@ -22,9 +22,9 @@ func recv(raw_pkt: PackedByteArray):
 	for pkt: Dictionary in ss["records"]:
 		_handler.call(pkt, true)
 	SignalHub.emit_player_snapshot_sig(
-		_net_state.player_states(), _clock.cur_ss_time()
+		_net_state.players(), _clock.cur_ss_time()
 	)
 
 	# A controlled player is also moved by this signal. Skipping it would
 	# freeze the player
-	SignalHub.emit_player_states_live(_net_state.player_states())
+	SignalHub.emit_player_states_live(_net_state.players())

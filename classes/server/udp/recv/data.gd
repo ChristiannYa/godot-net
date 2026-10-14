@@ -18,4 +18,4 @@ func recv(raw_pkt: PackedByteArray):
 			for pkt in records:
 				_handler.call(pkt, true)
 
-	SignalHub.emit_player_states_live(_net_state.player_states())
+	SignalHub.emit_player_states_live(_net_state.players())

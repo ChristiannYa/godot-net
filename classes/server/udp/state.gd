@@ -10,7 +10,7 @@ var _last_seq: Dictionary = {}
 var _synced_sids: Dictionary = {}
 
 ## session id -> { field name -> value, ... }
-var _player_states: Dictionary = {}
+var _players: Dictionary = {}
 
 
 ## Returns false if the packet is stale/out-of-order and should be dropped.
@@ -42,18 +42,18 @@ func _is_seq_new(sid: int, seq: int) -> bool:
 
 ## Initializes player state and marks it as synced
 func reg_player(sid: int, is_sync: bool):
-	if !_player_states.has(sid):
-		_player_states[sid] = {}
+	if !_players.has(sid):
+		_players[sid] = {}
 		if is_sync:
 			_synced_sids[sid] = true
 
 
 func save_field(sid: int, field_name: String, value):
-	_player_states[sid][field_name] = value
+	_players[sid][field_name] = value
 
 
-func player_states() -> Dictionary:
-	return _player_states
+func players() -> Dictionary:
+	return _players
 
 
 func is_synced(sid: int) -> bool:
