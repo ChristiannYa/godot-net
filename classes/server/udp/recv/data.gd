@@ -1,11 +1,9 @@
 class_name PktRecvData
 
 var _handler: Callable
-var _net_state: NetState
 
 
-func _init(net_state: NetState, handler: Callable):
-	_net_state = net_state
+func _init(handler: Callable):
 	_handler = handler
 
 
@@ -18,4 +16,4 @@ func recv(raw_pkt: PackedByteArray):
 			for pkt in records:
 				_handler.call(pkt, true)
 
-	SignalHub.emit_player_states_live(_net_state.players())
+	SignalHub.emit_player_states_live(UdpClient.player_states())

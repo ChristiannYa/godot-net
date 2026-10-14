@@ -1,12 +1,10 @@
 class_name PktRecvSnapshot
 
 var _clock := ServerClock.new()
-var _net_state: NetState
 var _handler: Callable
 
 
-func _init(net_sate: NetState, handler: Callable):
-	_net_state = net_sate
+func _init(handler: Callable):
 	_handler = handler
 
 
@@ -22,9 +20,9 @@ func recv(raw_pkt: PackedByteArray):
 	for pkt: Dictionary in ss["records"]:
 		_handler.call(pkt, true)
 	SignalHub.emit_player_snapshot_sig(
-		_net_state.players(), _clock.cur_ss_time()
+		UdpClient.player_states(), _clock.cur_ss_time()
 	)
 
 	# A controlled player is also moved by this signal. Skipping it would
 	# freeze the player
-	SignalHub.emit_player_states_live(_net_state.players())
+	SignalHub.emit_player_states_live(UdpClient.player_states())

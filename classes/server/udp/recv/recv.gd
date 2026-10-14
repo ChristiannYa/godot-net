@@ -23,9 +23,9 @@ func _init(
 	_rel = rel
 	_net_state = net_state
 
-	data = PktRecvData.new(net_state, _handler)
+	data = PktRecvData.new(_handler)
 	ack = PktRecvAck.new(rel)
-	snapshot = PktRecvSnapshot.new(net_state, _handler)
+	snapshot = PktRecvSnapshot.new(_handler)
 
 
 ## `pkt`: field name -> value
