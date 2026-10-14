@@ -6,15 +6,7 @@ var udp_codec := UdpCodec.create()
 var _state := NetState.new()
 var _rel := NetReliable.new()
 
-var _pkt_handler: PacketHandler = (
-	PacketHandler
-	. new(
-		_udp_peer,
-		udp_codec,
-		_state,
-		_rel,
-	)
-)
+var _pkt_rcvr := PktRecvr.new(_udp_peer, _rel, _state)
 
 var _oneshot_field_cts: OneShot = OneShot.new()
 
@@ -40,11 +32,11 @@ func _process(_delta: float):
 
 		match pkt[0]:
 			UdpCodec.PKT_ACK:
-				_pkt_handler.ack(pkt)
+				_pkt_rcvr.ack.recv(pkt)
 			UdpCodec.PKT_DATA:
-				_pkt_handler.data(pkt)
+				_pkt_rcvr.data.recv(pkt)
 			UdpCodec.PKT_SNAPSHOT:
-				_pkt_handler.snapshot(pkt)
+				_pkt_rcvr.snapshot.recv(pkt)
 
 	_tick_rel()
 
