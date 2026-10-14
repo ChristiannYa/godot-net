@@ -31,7 +31,7 @@ func push_server_pose(states: Dictionary, ss_time_s: float):
 ## Runs each frame, drawing a delayed player's position
 func apply():
 	# Moment in the past being shown on the screen (now - delay)
-	var render_t: float = _now_s() - _DELAY_MS / 1000.0
+	var render_t: float = UTime.now_s() - _DELAY_MS / 1000.0
 
 	var pose: Pose = _history.pose_at(render_t)
 	if pose == null:
@@ -41,7 +41,3 @@ func apply():
 	p.global_position.y = pose.y
 	p.global_position.z = pose.z
 	p.face(pose.yaw)
-
-
-func _now_s() -> float:
-	return Time.get_ticks_usec() / 1_000_000.0
