@@ -6,9 +6,9 @@ var _udp_peer: PacketPeerUDP
 var _rel: NetReliable
 var _net_state: NetState
 
-var ack: PktRecvAck
-var data: PktRecvData
-var snapshot: PktRecvSnapshot
+var _data: PktRecvData = PktRecvData.new()
+var _ack: PktRecvAck = PktRecvAck.new(_rel)
+var _snapshot: PktRecvSnapshot = PktRecvSnapshot.new()
 
 ## session id -> sequence number
 var _last_seq: Dictionary = {}
@@ -23,9 +23,21 @@ func _init(
 	_rel = rel
 	_net_state = net_state
 
-	data = PktRecvData.new(_handler)
-	ack = PktRecvAck.new(rel)
-	snapshot = PktRecvSnapshot.new(_handler)
+
+func recv(pkt: PackedByteArray):
+	## Too short to hold the header
+	if pkt.size() < 2:
+		return
+
+	match pkt[0]:
+		UdpCodec.PKT_ACK:
+			_ack.recv(pkt)
+
+		UdpCodec.PKT_DATA:
+			_data.recv(pkt, _handler)
+
+		UdpCodec.PKT_SNAPSHOT:
+			_snapshot.recv(pkt, _handler)
 
 
 ## `pkt`: field name -> value
@@ -40,7 +52,10 @@ func _handler(raw_pkt: Dictionary, is_sync: bool):
 
 	if raw_pkt.has("DevPacketId"):
 		var pkt_id: int = raw_pkt["DevPacketId"]
+
+		# @TODO: find a way to not call udp_peer's put_packet
 		_udp_peer.put_packet(UdpAck.encode_ack(pkt_id))
+
 		if _rel.is_pkt_seen(pkt_id):
 			return  # No need to re-process packet
 

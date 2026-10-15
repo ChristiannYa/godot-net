@@ -21,18 +21,7 @@ func _ready():
 func _process(_delta: float):
 	while _udp_peer.get_available_packet_count() > 0:
 		var pkt = _udp_peer.get_packet()
-
-		## Too short to hold the header
-		if pkt.size() < 2:
-			continue
-
-		match pkt[0]:
-			UdpCodec.PKT_ACK:
-				_pkt_rcvr.ack.recv(pkt)
-			UdpCodec.PKT_DATA:
-				_pkt_rcvr.data.recv(pkt)
-			UdpCodec.PKT_SNAPSHOT:
-				_pkt_rcvr.snapshot.recv(pkt)
+		_pkt_rcvr.recv(pkt)
 
 	sender.due_rel()
 

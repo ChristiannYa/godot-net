@@ -1,14 +1,9 @@
 class_name PktRecvSnapshot
 
 var _clock := ServerClock.new()
-var _handler: Callable
 
 
-func _init(handler: Callable):
-	_handler = handler
-
-
-func recv(raw_pkt: PackedByteArray):
+func recv(raw_pkt: PackedByteArray, handler: Callable):
 	var ss: Dictionary = UdpClient.udp_codec.decode_snapshot(raw_pkt)
 	if ss.is_empty():
 		return
@@ -18,7 +13,7 @@ func recv(raw_pkt: PackedByteArray):
 		return
 
 	for pkt: Dictionary in ss["records"]:
-		_handler.call(pkt, true)
+		handler.call(pkt, true)
 
 	SignalHub.emit_player_snapshot_sig(
 		UdpClient.player_states(), _clock.cur_ss_time()
