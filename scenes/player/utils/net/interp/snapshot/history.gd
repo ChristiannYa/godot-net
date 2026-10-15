@@ -48,7 +48,7 @@ func pose_at(at_t: float) -> Pose:
 
 
 static func _of(snap: Snapshot) -> Pose:
-	return Pose.new(snap.x, snap.y, snap.z, snap.yaw)
+	return Pose.new(snap.x, snap.y, snap.z, snap.yaw, snap.is_crouching)
 
 
 static func _blend(older: Snapshot, newer: Snapshot, at_t: float) -> Pose:
@@ -57,9 +57,15 @@ static func _blend(older: Snapshot, newer: Snapshot, at_t: float) -> Pose:
 	# Fraction of the way from older to newer
 	var w: float = (at_t - older.t) / elapsed if elapsed > 0.0 else 1.0
 
-	return Pose.new(
-		lerpf(older.x, newer.x, w),
-		lerpf(older.y, newer.y, w),
-		lerpf(older.z, newer.z, w),
-		lerp_angle(older.yaw, newer.yaw, w)
+	return (
+		Pose
+		. new(
+			lerpf(older.x, newer.x, w),
+			lerpf(older.y, newer.y, w),
+			lerpf(older.z, newer.z, w),
+			lerp_angle(older.yaw, newer.yaw, w),
+			# A bool can't be blended, so hold the older snapshot's value until
+			# the newer one's time arrives
+			older.is_crouching
+		)
 	)

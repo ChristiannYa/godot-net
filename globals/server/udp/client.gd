@@ -17,7 +17,7 @@ var _intent_seq := 0
 
 func _ready():
 	_udp_peer.bind(0)
-	_udp_peer.set_dest_address("10.0.0.4", 34254)
+	_udp_peer.set_dest_address("10.0.0.240", 34254)
 	self.send_input("DevPing", 1)
 
 
@@ -55,13 +55,13 @@ func send_input_rel(field_name: String, val: int):
 	_udp_peer.put_packet(pkt)
 
 
-func send_intent(mv: Vector2, yaw: float):
+func send_intent(mv: Vector2, yaw: float, is_crouching: bool):
 	var jump_ct := _oneshot_field_cts.ct("jump")
 	if jump_ct == null:
 		return
 
 	var pkt := udp_codec.encode_intent(
-		_intent_seq, mv.x, mv.y, yaw, false, jump_ct
+		_intent_seq, mv.x, mv.y, yaw, is_crouching, jump_ct
 	)
 	_udp_peer.put_packet(pkt)
 

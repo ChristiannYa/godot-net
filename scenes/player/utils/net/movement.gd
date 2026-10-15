@@ -11,6 +11,15 @@ func get_server_y(states: Dictionary) -> Variant:
 	return UdpClient.udp_codec.decode_y(state["LocationY"])
 
 
+## Returns `bool` or `null`
+func get_server_crouch(states: Dictionary) -> Variant:
+	var state: Dictionary = states.get(p.sid, {})
+	if !state.has("IsCrouching"):
+		return null
+
+	return state["IsCrouching"] == 1
+
+
 func get_server_yaw(states: Dictionary) -> float:
 	var state: Dictionary = states.get(p.sid, {})
 	if !state.has("Yaw"):

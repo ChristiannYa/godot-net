@@ -6,5 +6,6 @@ func _ready():
 	SignalHub.player_snapshot_sig.connect(utils.net.interp.push_server_pose)
 
 
-func _process(_delta: float):
+func _process(delta: float):
+	super._process(delta)
 	utils.net.interp.apply()
