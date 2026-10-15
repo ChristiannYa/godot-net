@@ -19,9 +19,13 @@ func _init(
 var _intent_seq := 0
 
 
-func def(field_name: String, value: int):
-	var pkt = UdpClient.codec.encode({field_name: value})
-	_peer.put_packet(pkt)
+## Calls `PacketPeerUDP`'s `put_packet()`
+func def(buf: PackedByteArray):
+	_peer.put_packet(buf)
+
+
+func single(field_name: String, value: int):
+	_peer.put_packet(UdpClient.codec.encode({field_name: value}))
 
 
 func rel(field_name: String, val: int):

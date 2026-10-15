@@ -52,10 +52,7 @@ func _handler(raw_pkt: Dictionary, is_sync: bool):
 
 	if raw_pkt.has("DevPacketId"):
 		var pkt_id: int = raw_pkt["DevPacketId"]
-
-		# @TODO: find a way to not call udp_peer's put_packet
-		_peer.put_packet(UdpAck.encode_ack(pkt_id))
-
+		UdpClient.sender.def(UdpAck.encode_ack(pkt_id))
 		if _rel.is_pkt_seen(pkt_id):
 			return  # No need to re-process packet
 

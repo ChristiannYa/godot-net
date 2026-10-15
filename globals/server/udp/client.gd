@@ -15,7 +15,7 @@ var sender: UdpSender = UdpSender.new(_peer, _rel, _oneshot_ctr)
 func _ready():
 	_peer.bind(0)
 	_peer.set_dest_address("10.0.0.4", 34254)
-	sender.def("DevPing", 1)
+	sender.single("DevPing", 1)
 
 
 func _process(_delta: float):
