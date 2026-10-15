@@ -19,6 +19,7 @@ func recv(raw_pkt: PackedByteArray):
 
 	for pkt: Dictionary in ss["records"]:
 		_handler.call(pkt, true)
+
 	SignalHub.emit_player_snapshot_sig(
 		UdpClient.player_states(), _clock.cur_ss_time()
 	)

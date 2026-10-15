@@ -27,9 +27,9 @@ func pose_at(at_t: float) -> Pose:
 
 	# No snapshot old enough or new enough: hold the nearest one
 	if at_t <= oldest.t:
-		return _of(oldest)
+		return _of(oldest.pose)
 	if at_t >= newest.t:
-		return _of(newest)
+		return _of(newest.pose)
 
 	# Find the 2 snapshots around at_t and slide between them
 	for i in range(_snaps.size() - 1):
@@ -44,11 +44,11 @@ func pose_at(at_t: float) -> Pose:
 
 	# Unreachable, since the checks above guarantee a pair. GDScript still
 	# wants every path to return something
-	return _of(newest)
+	return _of(newest.pose)
 
 
-static func _of(snap: Snapshot) -> Pose:
-	return Pose.new(snap.x, snap.y, snap.z, snap.yaw, snap.is_crouching)
+static func _of(pose: Pose) -> Pose:
+	return Pose.new(pose.x, pose.y, pose.z, pose.yaw, pose.is_crouching)
 
 
 static func _blend(older: Snapshot, newer: Snapshot, at_t: float) -> Pose:
@@ -60,12 +60,12 @@ static func _blend(older: Snapshot, newer: Snapshot, at_t: float) -> Pose:
 	return (
 		Pose
 		. new(
-			lerpf(older.x, newer.x, w),
-			lerpf(older.y, newer.y, w),
-			lerpf(older.z, newer.z, w),
-			lerp_angle(older.yaw, newer.yaw, w),
+			lerpf(older.pose.x, newer.pose.x, w),
+			lerpf(older.pose.y, newer.pose.y, w),
+			lerpf(older.pose.z, newer.pose.z, w),
+			lerp_angle(older.pose.yaw, newer.pose.yaw, w),
 			# A bool can't be blended, so hold the older snapshot's value until
 			# the newer one's time arrives
-			older.is_crouching
+			older.pose.is_crouching
 		)
 	)

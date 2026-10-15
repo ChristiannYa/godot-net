@@ -17,7 +17,7 @@ var _intent_seq := 0
 
 func _ready():
 	_udp_peer.bind(0)
-	_udp_peer.set_dest_address("10.0.0.240", 34254)
+	_udp_peer.set_dest_address("10.0.0.4", 34254)
 	self.send_input("DevPing", 1)
 
 

@@ -28,7 +28,10 @@ func push_server_pose(states: Dictionary, ss_time_s: float):
 		return
 
 	var yaw: float = p.utils.net.movement.get_server_yaw(states)
-	_history.push(Snapshot.new(ss_time_s, loc.x, y, loc.z, yaw, is_crouching))
+
+	var pose: Pose = Pose.new(loc.x, y, loc.z, yaw, is_crouching)
+	var ss: Snapshot = Snapshot.new(ss_time_s, pose)
+	_history.push(ss)
 
 
 ## Runs each frame, drawing a delayed player's position
@@ -40,6 +43,7 @@ func apply():
 	if pose == null:
 		return
 
+	## @TODO: Make a function that receives and applies the pose
 	p.global_position.x = pose.x
 	p.global_position.y = pose.y
 	p.global_position.z = pose.z
