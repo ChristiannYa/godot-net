@@ -18,7 +18,7 @@ func push(snap: Snapshot):
 
 ## Pose (position + yaw direction) at time `at_t`, or null when there are no
 ## snapshots yet
-func pose_at_or_null(at_t: float) -> Pose:
+func pose_at_or_null(at_t: float) -> Player.Pose:
 	if _snaps.is_empty():
 		return null
 
@@ -46,18 +46,23 @@ func pose_at_or_null(at_t: float) -> Pose:
 	return null
 
 
-static func _of(pose: Pose) -> Pose:
-	return Pose.new(pose.x, pose.y, pose.z, pose.yaw, pose.is_crouching)
+static func _of(pose: Player.Pose) -> Player.Pose:
+	return Player.Pose.new(
+		pose.x, pose.y, pose.z, pose.yaw, pose.is_crouching
+	)
 
 
-static func _blend(older: Snapshot, newer: Snapshot, at_t: float) -> Pose:
+static func _blend(
+	older: Snapshot, newer: Snapshot, at_t: float
+) -> Player.Pose:
 	var elapsed: float = newer.t - older.t
 
 	# Fraction of the way from older to newer
 	var w: float = (at_t - older.t) / elapsed if elapsed > 0.0 else 1.0
 
 	return (
-		Pose
+		Player
+		. Pose
 		. new(
 			lerpf(older.pose.x, newer.pose.x, w),
 			lerpf(older.pose.y, newer.pose.y, w),

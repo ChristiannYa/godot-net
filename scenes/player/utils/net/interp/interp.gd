@@ -15,7 +15,9 @@ var _history := (
 
 
 func push_server_pose(states: Dictionary, ss_time_s: float):
-	var pose: Pose = p.utils.net.movement.get_server_pose_or_null(states)
+	var pose: Player.Pose = p.utils.net.movement.get_server_pose_or_null(
+		states
+	)
 	if pose == null:
 		return
 
@@ -29,7 +31,7 @@ func apply():
 	# Moment in the past being shown on the screen (now - delay)
 	var render_t: float = UTime.now_s() - _DELAY_MS / 1000.0
 
-	var pose: Pose = _history.pose_at_or_null(render_t)
+	var pose: Player.Pose = _history.pose_at_or_null(render_t)
 	if pose == null:
 		return
 
