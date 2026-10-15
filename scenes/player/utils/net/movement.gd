@@ -23,4 +23,4 @@ func apply_server_pose(states: Dictionary):
 	var pose: Pose = get_server_pose_or_null(states)
 	if pose == null:
 		return
-	p.set_pose(pose, false)
+	p.set_pose(pose, Player.YawSource.LOCAL)

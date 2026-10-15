@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
+enum YawSource { SERVER, LOCAL }
+
 const _HEIGHT = 2.0
 const _CROUCH_HEIGHT := 1.0
 const _CROUCH_SPEED := 6.0
@@ -38,15 +40,15 @@ func _process(delta: float):
 	_apply_height()
 
 
-## `with_yaw` has to be false for `PlayerSelf` because the camera turns the
-## body instantly. Applying the server's yaw would snap it back to an old value
+## `LOCAl` is for `PlayerSelf` because the camera already turns the body
+## instantly. Applying the server's yaw would snap it back to an old value
 ## each snapshot.
-func set_pose(pose: Pose, with_yaw: bool):
+func set_pose(pose: Pose, yaw_src: YawSource):
 	global_position.x = pose.x
 	global_position.y = pose.y
 	global_position.z = pose.z
 
-	if with_yaw:
+	if yaw_src == YawSource.SERVER:
 		set_yaw(pose.yaw)
 
 	set_is_crouching(pose.is_crouching)

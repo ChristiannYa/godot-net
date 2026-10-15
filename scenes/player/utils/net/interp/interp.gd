@@ -33,4 +33,4 @@ func apply():
 	if pose == null:
 		return
 
-	p.set_pose(pose, true)
+	p.set_pose(pose, Player.YawSource.SERVER)
