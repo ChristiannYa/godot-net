@@ -18,7 +18,7 @@ func push(snap: Snapshot):
 
 ## Pose (position + yaw direction) at time `at_t`, or null when there are no
 ## snapshots yet
-func pose_at(at_t: float) -> Pose:
+func pose_at_or_null(at_t: float) -> Pose:
 	if _snaps.is_empty():
 		return null
 

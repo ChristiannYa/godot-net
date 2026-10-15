@@ -1,4 +1,5 @@
 class_name Pose
+
 var x: float
 var y: float
 var z: float

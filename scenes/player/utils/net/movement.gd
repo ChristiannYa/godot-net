@@ -2,53 +2,25 @@ class_name PlayerUtilsNetMovement
 extends PlayerUtilsProvider
 
 
-## Returns `float` or `null`
-func get_server_y(states: Dictionary) -> Variant:
+func get_server_pose_or_null(states: Dictionary) -> Pose:
 	var state: Dictionary = states.get(p.sid, {})
-	if !state.has("LocationY"):
-		return null
 
-	return UdpClient.udp_codec.decode_y(state["LocationY"])
+	for key in ["LocationX", "LocationY", "LocationZ", "Yaw", "IsCrouching"]:
+		if !state.has(key):
+			return null
 
-
-## Returns `bool` or `null`
-func get_server_crouch(states: Dictionary) -> Variant:
-	var state: Dictionary = states.get(p.sid, {})
-	if !state.has("IsCrouching"):
-		return null
-
-	return state["IsCrouching"] == 1
-
-
-func get_server_yaw(states: Dictionary) -> float:
-	var state: Dictionary = states.get(p.sid, {})
-	if !state.has("Yaw"):
-		return 0.0
-
-	return UdpClient.udp_codec.decode_yaw(state["Yaw"])
-
-
-## This player's position from a states dictionary, or null if the
-## dictionary has no position for them yet
-func get_server_pos(states: Dictionary) -> XZ:
-	var state: Dictionary = states.get(p.sid, {})
-	if !state.has("LocationX") or !state.has("LocationZ"):
-		return null
-
-	var pos: Vector3 = UdpClient.udp_codec.decode_loc(
+	var loc: Vector3 = UdpClient.udp_codec.decode_loc(
 		state["LocationX"], state["LocationZ"]
 	)
-	return XZ.new(pos.x, pos.z)
+	var y: float = UdpClient.udp_codec.decode_y(state["LocationY"])
+	var yaw: float = UdpClient.udp_codec.decode_yaw(state["Yaw"])
+	var is_crouching: bool = state["IsCrouching"] == 1
+
+	return Pose.new(loc.x, y, loc.z, yaw, is_crouching)
 
 
-func apply_server_pos(states: Dictionary):
-	var pos: XZ = get_server_pos(states)
-	if pos == null:
+func apply_server_pose(states: Dictionary):
+	var pose: Pose = get_server_pose_or_null(states)
+	if pose == null:
 		return
-
-	p.global_position.x = pos.x
-	p.global_position.z = pos.z
-
-	var y: Variant = get_server_y(states)
-	if y != null:
-		p.global_position.y = y
+	p.set_pose(pose, false)

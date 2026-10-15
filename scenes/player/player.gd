@@ -38,9 +38,23 @@ func _process(delta: float):
 	_apply_height()
 
 
+## `with_yaw` has to be false for `PlayerSelf` because the camera turns the
+## body instantly. Applying the server's yaw would snap it back to an old value
+## each snapshot.
+func set_pose(pose: Pose, with_yaw: bool):
+	global_position.x = pose.x
+	global_position.y = pose.y
+	global_position.z = pose.z
+
+	if with_yaw:
+		set_yaw(pose.yaw)
+
+	set_is_crouching(pose.is_crouching)
+
+
 ## Turns the visible body, not the root, so that children of the root (like
 ## the camera on PlayerSelf) don't inherit the roatation
-func face(yaw: float):
+func set_yaw(yaw: float):
 	body.rotation.y = yaw
 
 
