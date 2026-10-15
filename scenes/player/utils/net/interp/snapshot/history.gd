@@ -42,9 +42,8 @@ func pose_at_or_null(at_t: float) -> Pose:
 
 		return _blend(older, newer, at_t)
 
-	# Unreachable, since the checks above guarantee a pair. GDScript still
-	# wants every path to return something
-	return _of(newest.pose)
+	# Unreachable, since the checks above guarantee a pair
+	return null
 
 
 static func _of(pose: Pose) -> Pose:
