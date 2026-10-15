@@ -1,4 +1,4 @@
-class_name OneShot
+class_name UdpOneShotCounter
 
 var _l: Logging = Logging.new()
 

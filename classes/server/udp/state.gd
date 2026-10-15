@@ -1,4 +1,4 @@
-class_name NetState
+class_name UdpState
 extends RefCounted
 
 ## session id -> TRUE

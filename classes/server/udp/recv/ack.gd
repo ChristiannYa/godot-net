@@ -1,9 +1,9 @@
 class_name PktRecvAck
 
-var _rel: NetReliable
+var _rel: UdpReliable
 
 
-func _init(rel: NetReliable):
+func _init(rel: UdpReliable):
 	_rel = rel
 
 

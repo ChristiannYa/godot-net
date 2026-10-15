@@ -4,7 +4,7 @@ var _clock := ServerClock.new()
 
 
 func recv(raw_pkt: PackedByteArray, handler: Callable):
-	var ss: Dictionary = UdpClient.udp_codec.decode_snapshot(raw_pkt)
+	var ss: Dictionary = UdpClient.codec.decode_snapshot(raw_pkt)
 	if ss.is_empty():
 		return
 

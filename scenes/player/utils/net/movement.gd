@@ -9,11 +9,11 @@ func get_server_pose_or_null(states: Dictionary) -> Player.Pose:
 		if !state.has(key):
 			return null
 
-	var loc: Vector3 = UdpClient.udp_codec.decode_loc(
+	var loc: Vector3 = UdpClient.codec.decode_loc(
 		state["LocationX"], state["LocationZ"]
 	)
-	var y: float = UdpClient.udp_codec.decode_y(state["LocationY"])
-	var yaw: float = UdpClient.udp_codec.decode_yaw(state["Yaw"])
+	var y: float = UdpClient.codec.decode_y(state["LocationY"])
+	var yaw: float = UdpClient.codec.decode_yaw(state["Yaw"])
 	var is_crouching: bool = state["IsCrouching"] == 1
 
 	return Player.Pose.new(loc.x, y, loc.z, yaw, is_crouching)

@@ -1,10 +1,10 @@
-class_name PktRecvr
+class_name UdpRecvr
 
 const _BITS_LEN := 8
 
-var _udp_peer: PacketPeerUDP
-var _rel: NetReliable
-var _net_state: NetState
+var _peer: PacketPeerUDP
+var _rel: UdpReliable
+var _state: UdpState
 
 var _data: PktRecvData = PktRecvData.new()
 var _ack: PktRecvAck = PktRecvAck.new(_rel)
@@ -16,12 +16,12 @@ var _last_seq: Dictionary = {}
 
 func _init(
 	udp_peer: PacketPeerUDP,
-	rel: NetReliable,
-	net_state: NetState,
+	rel: UdpReliable,
+	net_state: UdpState,
 ):
-	_udp_peer = udp_peer
+	_peer = udp_peer
 	_rel = rel
-	_net_state = net_state
+	_state = net_state
 
 
 func recv(pkt: PackedByteArray):
@@ -54,7 +54,7 @@ func _handler(raw_pkt: Dictionary, is_sync: bool):
 		var pkt_id: int = raw_pkt["DevPacketId"]
 
 		# @TODO: find a way to not call udp_peer's put_packet
-		_udp_peer.put_packet(UdpAck.encode_ack(pkt_id))
+		_peer.put_packet(UdpAck.encode_ack(pkt_id))
 
 		if _rel.is_pkt_seen(pkt_id):
 			return  # No need to re-process packet
@@ -62,12 +62,12 @@ func _handler(raw_pkt: Dictionary, is_sync: bool):
 	if raw_pkt.has("DevIsNewPlayer"):
 		SignalHub.emit_player_sid(sid)
 
-	if !_net_state.players().has(sid):
-		_net_state.reg_player(sid, is_sync)
+	if !_state.players().has(sid):
+		_state.reg_player(sid, is_sync)
 
 	for field_name: String in raw_pkt:
 		if !field_name.begins_with("Dev"):
-			_net_state.save_field(sid, field_name, raw_pkt[field_name])
+			_state.save_field(sid, field_name, raw_pkt[field_name])
 
 
 ## Returns true if `seq` is more recent than `last_seq`, treating both as a
