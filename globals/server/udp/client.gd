@@ -7,18 +7,15 @@ var _state := NetState.new()
 var _rel := NetReliable.new()
 
 var _pkt_rcvr := PktRecvr.new(_udp_peer, _rel, _state)
-var _oneshot_field_cts: OneShot = OneShot.new()
+var _oneshot_cts: OneShot = OneShot.new()
 
-# If the counter lived on the player node and that node were ever be freed and
-# recreated while the session continued, it would restart at 0 and the server
-# would drop everything as stale
-var _intent_seq := 0
+var sender: UdpSender = UdpSender.new(_udp_peer, _rel, _oneshot_cts)
 
 
 func _ready():
 	_udp_peer.bind(0)
 	_udp_peer.set_dest_address("10.0.0.4", 34254)
-	self.send_input("DevPing", 1)
+	sender.def("DevPing", 1)
 
 
 func _process(_delta: float):
@@ -37,40 +34,11 @@ func _process(_delta: float):
 			UdpCodec.PKT_SNAPSHOT:
 				_pkt_rcvr.snapshot.recv(pkt)
 
-	_tick_rel()
-
-
-func _tick_rel():
-	for bytes: PackedByteArray in _rel.tick():
-		_udp_peer.put_packet(bytes)
-
-
-func send_input(field_name: String, value: int):
-	var pkt = udp_codec.encode({field_name: value})
-	_udp_peer.put_packet(pkt)
-
-
-func send_input_rel(field_name: String, val: int):
-	var pkt := _rel.send_input({field_name: val}, udp_codec.encode)
-	_udp_peer.put_packet(pkt)
-
-
-func send_intent(mv: Vector2, yaw: float, is_crouching: bool):
-	var jump_ct := _oneshot_field_cts.ct("jump")
-	if jump_ct == null:
-		return
-
-	var pkt := udp_codec.encode_intent(
-		_intent_seq, mv.x, mv.y, yaw, is_crouching, jump_ct
-	)
-	_udp_peer.put_packet(pkt)
-
-	# 0xFF wraps the counter at 256 so it fits the protocol's seq 8-bit counter
-	_intent_seq = (_intent_seq + 1) & 0xFF
+	sender.due_rel()
 
 
 func reg_oneshot(field: String):
-	_oneshot_field_cts.reg(field)
+	_oneshot_cts.reg(field)
 
 
 func is_synced(sid: int) -> bool:

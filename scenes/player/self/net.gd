@@ -10,7 +10,7 @@ func _ready():
 
 
 func _physics_process(_delta: float):
-	UdpClient.send_intent(
+	UdpClient.sender.intent(
 		Input.get_vector("m_left", "m_right", "m_fwd", "m_back"),
 		player.cam_yaw(),
 		Input.is_action_pressed("m_crouch")
