@@ -15,9 +15,7 @@ func recv(raw_pkt: PackedByteArray, handler: Callable):
 	for pkt: Dictionary in ss["records"]:
 		handler.call(pkt, true)
 
-	SignalHub.emit_player_snapshot_sig(
-		UdpClient.player_states(), _clock.cur_ss_time()
-	)
+	UdpClient.poses.ingest_snapshot(raw_pkt, _clock.cur_ss_time())
 
 	# A controlled player is also moved by this signal. Skipping it would
 	# freeze the player

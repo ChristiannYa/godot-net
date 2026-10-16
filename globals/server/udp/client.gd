@@ -1,7 +1,15 @@
 extends Node
 
+const RENDER_DELAY_MS := 100
+const _SNAPSHOT_HZ := 60
+const _BURST_ALLOWANCE := 10
+
 var _peer := PacketPeerUDP.new()
 var codec := UdpCodec.create()
+
+var poses := UdpPoses.create(
+	int(RENDER_DELAY_MS * _SNAPSHOT_HZ / 1000.0) + _BURST_ALLOWANCE
+)
 
 var _state := UdpState.new()
 var _rel := UdpReliable.new()
