@@ -3,5 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://db0lri614ij81" path="res://scenes/player/player.tscn" id="1_bpwdw"]
 [ext_resource type="Script" uid="uid://cfwqjtsd2otb" path="res://scenes/player/remote/player_remote.gd" id="2_8aa4n"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8aa4n"]
+resource_local_to_scene = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ifpyr"]
+resource_local_to_scene = true
+
 [node name="PlayerRemote" unique_id=189855238 instance=ExtResource("1_bpwdw")]
 script = ExtResource("2_8aa4n")
+
+[node name="Body" parent="." index="0" unique_id=1952125340]
+mesh = SubResource("CapsuleMesh_8aa4n")
+
+[node name="Collision" parent="." index="1" unique_id=1434956013]
+shape = SubResource("CapsuleShape3D_ifpyr")

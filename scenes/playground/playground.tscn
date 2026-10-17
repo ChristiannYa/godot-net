@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b3e51ywihc7sq"]
 
 [ext_resource type="PackedScene" uid="uid://blgdt0xh5w4d4" path="res://scenes/floor/floor.tscn" id="3_1ro2l"]
-[ext_resource type="PackedScene" uid="uid://bn0c5rnls0kh2" path="res://scenes/debug/debug.tscn" id="4_51ujy"]
 [ext_resource type="PackedScene" uid="uid://cj27rtgu5xthb" path="res://scenes/object_maker/object_maker.tscn" id="4_ypqds"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2hpey"]
@@ -29,9 +28,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=920017583]
 environment = SubResource("Environment_8absr")
-
-[node name="Debug" parent="." unique_id=1419350418 instance=ExtResource("4_51ujy")]
-visible = false
 
 [node name="ObjectMaker" parent="." unique_id=1686449328 instance=ExtResource("4_ypqds")]
 

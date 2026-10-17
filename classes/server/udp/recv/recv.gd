@@ -43,6 +43,8 @@ func recv(pkt: PackedByteArray):
 ## `pkt`: field name -> value
 func _handler(raw_pkt: Dictionary, is_sync: bool):
 	var sid: int = raw_pkt.get("DevSessionId")
+	if sid == null:
+		return
 
 	if raw_pkt.has("DevSequence"):
 		var seq: int = raw_pkt["DevSequence"]
