@@ -3,10 +3,8 @@ extends Node
 @onready var player: PlayerSelf = self.get_parent()
 
 
-func _ready():
-	SignalHub.player_states_live_sig.connect(
-		player.utils.net.movement.apply_server_pose
-	)
+func _process(_delta: float):
+	player.utils.net.movement.apply_server_pose()
 
 
 func _physics_process(_delta: float):
