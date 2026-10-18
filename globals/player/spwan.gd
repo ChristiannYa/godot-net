@@ -23,42 +23,30 @@ func _on_player_sid(sid: int):
 
 func _on_player_states_live(states: Dictionary):
 	if _sid != -1 and !_spawned.has(_sid):
-		_handle_spawn(_PLAYER_SELF, states, _sid)
+		_handle_spawn(_PLAYER_SELF, _sid)
 
 	for sid in states:
 		if sid == _sid or _spawned.has(sid):
 			continue
-		_handle_spawn(_PLAYER_REMOTE, states, sid)
+		_handle_spawn(_PLAYER_REMOTE, sid)
 
 
-func _handle_spawn(resr: PackedScene, states: Dictionary, sid: int):
-	var state: Dictionary = states[sid]
+func _handle_spawn(resr: PackedScene, sid: int):
+	var pose := UdpClient.players.latest(sid)
+	var hsv := UdpClient.players.color(sid)
+	if pose.is_empty() or hsv.is_empty():
+		return  # Not everything is known yet
 
-	var location_set = state.has("LocationX") and state.has("LocationZ")
-	var color_set = (
-		state.has("ColorH") and state.has("ColorS") and state.has("ColorV")
+	var color := Color.from_hsv(hsv[0], hsv[1], hsv[2])
+	SignalHub.emit_add_scene_at_transform(
+		Transform3D(Basis(), _get_spawn_pos(pose)),
+		resr,
+		func(player: Player):
+			player.sid = sid
+			player.color = color
 	)
-
-	if location_set and color_set:
-		SignalHub.emit_add_scene_at_transform(
-			Transform3D(Basis(), _get_spawn_pos(state, sid)),
-			resr,
-			func(player: Player):
-				player.sid = sid
-				player.color = _get_color(state)
-		)
-		_spawned[sid] = true
+	_spawned[sid] = true
 
 
-func _get_spawn_pos(state: Dictionary, sid: int) -> Vector3:
-	var loc: Vector3 = UdpClient.codec.decode_loc(
-		state["LocationX"], state["LocationZ"]
-	)
-	var y = 1.5 if UdpClient.is_synced(sid) else 10.5
-	return Vector3(loc.x, y, loc.z)
-
-
-func _get_color(state: Dictionary) -> Color:
-	return UdpClient.codec.decode_hsv(
-		state["ColorH"], state["ColorS"], state["ColorV"]
-	)
+func _get_spawn_pos(pose: PackedFloat32Array) -> Vector3:
+	return Vector3(pose[0], pose[1], pose[2])

@@ -10,4 +10,5 @@ func recv(raw_pkt: PackedByteArray, handler: Callable):
 			for pkt in records:
 				handler.call(pkt, true)
 
+	UdpClient.players.ingest_data(raw_pkt)
 	SignalHub.emit_player_states_live(UdpClient.player_states())
