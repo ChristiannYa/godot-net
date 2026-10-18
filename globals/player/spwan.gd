@@ -14,14 +14,14 @@ var _spawned := {}
 
 func _ready():
 	SignalHub.player_sid_sig.connect(_on_player_sid)
-	SignalHub.player_states_live_sig.connect(_on_player_states_live)
+	SignalHub.players_updated_sig.connect(_on_players_updated_sig)
 
 
 func _on_player_sid(sid: int):
 	_sid = sid
 
 
-func _on_player_states_live(_states: Dictionary):
+func _on_players_updated_sig():
 	if _sid != -1 and !_spawned.has(_sid):
 		_handle_spawn(_PLAYER_SELF, _sid)
 

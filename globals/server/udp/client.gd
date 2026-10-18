@@ -14,10 +14,9 @@ var state := UdpState.create(
 ## Fetched once: every call to `state.players()` crosses into Rust
 var players := state.players()
 
-var _legacy_state := UdpLegacyState.new()
 var _rel := UdpReliable.new()
 
-var _rcvr := UdpRecvr.new(_peer, _rel, _legacy_state)
+var _rcvr := UdpRecvr.new(_peer, _rel)
 var _oneshot_ctr: UdpOneShotCounter = UdpOneShotCounter.new()
 
 var sender: UdpSender = UdpSender.new(_peer, _rel, _oneshot_ctr)
@@ -39,11 +38,3 @@ func _process(_delta: float):
 
 func reg_oneshot(field: String):
 	_oneshot_ctr.reg(field)
-
-
-func is_synced(sid: int) -> bool:
-	return _legacy_state.is_synced(sid)
-
-
-func player_states() -> Dictionary:
-	return _legacy_state.players()

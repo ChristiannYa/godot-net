@@ -11,11 +11,11 @@ func emit_add_scene_at_transform(
 	add_scene_at_transform_sig.emit(at, scene, on_ready)
 
 
-signal player_states_live_sig(states: Dictionary)
+signal players_updated_sig
 
 
-func emit_player_states_live(states: Dictionary):
-	player_states_live_sig.emit(states)
+func emit_players_updated():
+	players_updated_sig.emit()
 
 
 signal player_sid_sig(sid: int)
