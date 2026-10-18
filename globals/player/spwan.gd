@@ -21,11 +21,15 @@ func _on_player_sid(sid: int):
 	_sid = sid
 
 
-func _on_player_states_live(states: Dictionary):
+func _on_player_states_live(_states: Dictionary):
 	if _sid != -1 and !_spawned.has(_sid):
 		_handle_spawn(_PLAYER_SELF, _sid)
 
-	for sid in states:
+	## @TODO
+	## This adds a small FFI call per snapshot.
+	## Create a "new sids since last call" function so it runs when someone
+	## actually appears
+	for sid in UdpClient.players.sids():
 		if sid == _sid or _spawned.has(sid):
 			continue
 		_handle_spawn(_PLAYER_REMOTE, sid)
