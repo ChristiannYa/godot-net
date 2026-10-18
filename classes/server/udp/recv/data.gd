@@ -4,9 +4,9 @@ class_name PktRecvData
 func recv(raw_pkt: PackedByteArray, handler: Callable):
 	match raw_pkt[1]:
 		UdpCodec.DEC_SINGLE:
-			handler.call(UdpClient.codec.decode(raw_pkt))
+			handler.call(UdpClient.codec.decode_dev(raw_pkt))
 		UdpCodec.DEC_BATCH:
-			var records: Array = UdpClient.codec.decode_batch(raw_pkt)
+			var records: Array = UdpClient.codec.decode_dev_batch(raw_pkt)
 			for pkt in records:
 				handler.call(pkt)
 
