@@ -6,7 +6,7 @@ var _peer: PacketPeerUDP
 var _rel: UdpReliable
 
 var _data: PktRecvData = PktRecvData.new()
-var _ack: PktRecvAck = PktRecvAck.new(_rel)
+var _ack: PktRecvAck
 var _snapshot: PktRecvSnapshot = PktRecvSnapshot.new()
 
 ## session id -> sequence number
@@ -19,6 +19,7 @@ func _init(
 ):
 	_peer = udp_peer
 	_rel = rel
+	_ack = PktRecvAck.new(_rel)
 
 
 func recv(pkt: PackedByteArray):
@@ -39,8 +40,8 @@ func recv(pkt: PackedByteArray):
 
 ## `pkt`: field name -> value
 func _handler(raw_pkt: Dictionary):
-	var sid: int = raw_pkt.get("DevSessionId")
-	if sid == null:
+	var sid: int = raw_pkt.get("DevSessionId", -1)
+	if sid == -1:
 		return
 
 	if raw_pkt.has("DevSequence"):
