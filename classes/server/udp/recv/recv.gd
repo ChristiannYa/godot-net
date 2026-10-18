@@ -4,7 +4,7 @@ const _BITS_LEN := 8
 
 var _peer: PacketPeerUDP
 var _rel: UdpReliable
-var _state: UdpState
+var _state: UdpLegacyState
 
 var _data: PktRecvData = PktRecvData.new()
 var _ack: PktRecvAck = PktRecvAck.new(_rel)
@@ -17,7 +17,7 @@ var _last_seq: Dictionary = {}
 func _init(
 	udp_peer: PacketPeerUDP,
 	rel: UdpReliable,
-	net_state: UdpState,
+	net_state: UdpLegacyState,
 ):
 	_peer = udp_peer
 	_rel = rel

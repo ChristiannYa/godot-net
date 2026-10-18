@@ -7,14 +7,17 @@ const _BURST_ALLOWANCE := 10
 var _peer := PacketPeerUDP.new()
 var codec := UdpCodec.create()
 
-var poses := UdpPoses.create(
+var state := UdpState.create(
 	int(RENDER_DELAY_MS * _SNAPSHOT_HZ / 1000.0) + _BURST_ALLOWANCE
 )
 
-var _state := UdpState.new()
+## Fetched once: every call to `state.players()` crosses into Rust
+var players := state.players()
+
+var _legacy_state := UdpLegacyState.new()
 var _rel := UdpReliable.new()
 
-var _rcvr := UdpRecvr.new(_peer, _rel, _state)
+var _rcvr := UdpRecvr.new(_peer, _rel, _legacy_state)
 var _oneshot_ctr: UdpOneShotCounter = UdpOneShotCounter.new()
 
 var sender: UdpSender = UdpSender.new(_peer, _rel, _oneshot_ctr)
@@ -39,8 +42,8 @@ func reg_oneshot(field: String):
 
 
 func is_synced(sid: int) -> bool:
-	return _state.is_synced(sid)
+	return _legacy_state.is_synced(sid)
 
 
 func player_states() -> Dictionary:
-	return _state.players()
+	return _legacy_state.players()

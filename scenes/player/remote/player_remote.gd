@@ -8,7 +8,7 @@ func _process(delta: float):
 	# Moment in the past being shown on the sceen (now - delay)
 	var render_t: float = UTime.now_s() - UdpClient.RENDER_DELAY_MS / 1000.0
 
-	var ss: PackedFloat32Array = UdpClient.poses.sample(sid, render_t)
+	var ss: PackedFloat32Array = UdpClient.players.sample(sid, render_t)
 	if ss.is_empty():
 		return
 

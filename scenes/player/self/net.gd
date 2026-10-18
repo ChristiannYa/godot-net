@@ -4,6 +4,9 @@ extends Node
 
 
 func _process(_delta: float):
+	# This call is harmless for the moment because the player is moved only by
+	# the server. Whenever client-side prediction is added, applying the server
+	# pose every frame would overwrite the predicted position.
 	player.utils.net.movement.apply_server_pose()
 
 

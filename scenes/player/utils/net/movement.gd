@@ -3,7 +3,7 @@ extends PlayerUtilsProvider
 
 
 func apply_server_pose():
-	var ss: PackedFloat32Array = UdpClient.poses.latest(p.sid)
+	var ss: PackedFloat32Array = UdpClient.players.latest(p.sid)
 	if ss.is_empty():
 		return
 

@@ -1,4 +1,4 @@
-class_name UdpState
+class_name UdpLegacyState
 extends RefCounted
 
 ## session id -> TRUE
