@@ -42,9 +42,6 @@ func _handle_dev(raw_pkt: PackedByteArray):
 		if _rel.is_pkt_seen(pkt_id):
 			return false  # No need to re-process packet
 
-	if dev.has("DevIsNewPlayer"):
-		SignalHub.emit_player_sid(sid)
-
 	return true
 
 

@@ -16,10 +16,3 @@ signal players_updated_sig
 
 func emit_players_updated():
 	players_updated_sig.emit()
-
-
-signal player_sid_sig(sid: int)
-
-
-func emit_player_sid(sid: int):
-	player_sid_sig.emit(sid)
