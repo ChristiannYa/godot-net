@@ -5,10 +5,9 @@ extends Player
 func _process(delta: float):
 	super._process(delta)
 
-	# Moment in the past being shown on the sceen (now - delay)
-	var render_t: float = UTime.now_s() - UdpClient.RENDER_DELAY_MS / 1000.0
-
-	var ss: PackedFloat32Array = UdpClient.players.sample(sid, render_t)
+	var ss: PackedFloat32Array = UdpClient.players.sample(
+		sid, UdpClient.state.render_t(UTime.now_s())
+	)
 	if ss.is_empty():
 		return
 

@@ -1,25 +1,15 @@
 extends Node
 
-const RENDER_DELAY_MS := 100
-const _SNAPSHOT_HZ := 60
-const _BURST_ALLOWANCE := 10
-
 var _peer := PacketPeerUDP.new()
 var codec := UdpCodec.create()
 
-var state := UdpState.create(
-	int(RENDER_DELAY_MS * _SNAPSHOT_HZ / 1000.0) + _BURST_ALLOWANCE
-)
-
-## Fetched once: every call to `state.players()` crosses into Rust
-var players := state.players()
-
-var _rel := UdpReliable.new()
-
-var _rcvr := UdpRecvr.new(_peer, _rel)
 var _oneshot_ctr: UdpOneShotCounter = UdpOneShotCounter.new()
-
+var _rel := UdpReliable.new()
 var sender: UdpSender = UdpSender.new(_peer, _rel, _oneshot_ctr)
+var _rcvr := UdpRecvr.new(_peer, _rel)
+
+var state := UdpState.create()
+var players := state.players()  # every call to `state.players()` crosses rust
 
 
 func _ready():

@@ -1,7 +1,5 @@
 class_name PktRecvData
 
-const _BITS_LEN := 8
-
 var _rel: UdpReliable
 
 

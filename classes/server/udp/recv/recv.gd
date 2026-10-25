@@ -1,7 +1,5 @@
 class_name UdpRecvr
 
-const _BITS_LEN := 8
-
 var _peer: PacketPeerUDP
 var _data: PktRecvData
 var _ack: PktRecvAck
