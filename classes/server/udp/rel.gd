@@ -5,12 +5,12 @@ var _pending := UdpPending.create()
 var _dedup := UdpDedup.create()
 
 
-## Seeds `DevPacketId` into `fields` before `encode()`, and tracks the
+## Seeds `DevPktId` into `fields` before `encode()`, and tracks the
 ## resulting bytes for retry.
 ## Returns the encoded bytes to send_input.
 func send_input(fields: Dictionary, encode: Callable) -> PackedByteArray:
 	var id: int = _pending.next_id()
-	fields["DevPacketId"] = id
+	fields["DevPktId"] = id
 
 	var bytes: PackedByteArray = encode.call(fields)
 	_pending.track(id, bytes)

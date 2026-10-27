@@ -20,12 +20,12 @@ func recv(raw_pkt: PackedByteArray):
 func _handle_dev(raw_pkt: PackedByteArray):
 	var dev = UdpClient.codec.decode_dev(raw_pkt)
 
-	var sid: int = dev.get("DevSessionId", -1)
+	var sid: int = dev.get("DevSid", -1)
 	if sid == -1:
 		return false
 
-	if dev.has("DevPacketId"):
-		var pkt_id: int = dev["DevPacketId"]
+	if dev.has("DevPktId"):
+		var pkt_id: int = dev["DevPktId"]
 		UdpClient.sender.def(UdpAck.encode_ack(pkt_id))
 		if _rel.is_pkt_seen(pkt_id):
 			return false  # No need to re-process packet
