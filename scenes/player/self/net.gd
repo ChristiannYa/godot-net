@@ -11,11 +11,13 @@ func _process(_delta: float):
 
 
 func _physics_process(_delta: float):
-	UdpClient.sender.intent(
-		Input.get_vector("m_left", "m_right", "m_fwd", "m_back"),
-		player.cam_yaw(),
-		Input.is_action_pressed("m_crouch")
-	)
+	var mv: Vector2 = Input.get_vector("m_left", "m_right", "m_fwd", "m_back")
+	var cam_yaw: float = player.cam_yaw()
+	var is_crouching: bool = Input.is_action_pressed("m_crouch")
+	var jump_ct: Variant = UdpClient.sender.intent(mv, cam_yaw, is_crouching)
+
+	if jump_ct != null:
+		UdpClient.local_sim.tick(mv.x, mv.y, cam_yaw, is_crouching, jump_ct)
 
 
 func _input(event: InputEvent):

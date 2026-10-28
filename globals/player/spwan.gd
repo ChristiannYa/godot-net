@@ -48,6 +48,10 @@ func _handle_spawn(resr: PackedScene, sid: int):
 			player.sid = sid
 			player.color = color
 	)
+
+	if resr == _PLAYER_SELF:
+		UdpClient.local_sim.seed(pose[0], pose[1], pose[2])
+
 	_spawned[sid] = true
 
 

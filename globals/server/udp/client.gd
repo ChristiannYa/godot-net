@@ -11,6 +11,8 @@ var _rcvr := UdpRecvr.new(_peer, _rel)
 var state := UdpState.create()
 var players := state.players()  # every call to `state.players()` crosses rust
 
+var local_sim := UdpLocalSim.create()
+
 
 func _ready():
 	_peer.bind(0)
