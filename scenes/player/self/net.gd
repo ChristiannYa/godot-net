@@ -12,11 +12,11 @@ var _oneshot_ctr := UdpOneShotCounter.new()
 
 
 func _process(_delta: float):
-	pass
+	# pass
 	# This call is harmless for the moment because the player is moved only by
 	# the server. Whenever client-side prediction is added, applying the server
 	# pose every frame would overwrite the predicted position.
-	# player.utils.net.movement.apply_server_pose()
+	player.utils.net.movement.apply_server_pose()
 
 
 func _physics_process(_delta: float):
@@ -38,5 +38,5 @@ func _handle_intent_send():
 	var is_crouching: bool = Input.is_action_pressed("m_crouch")
 	UdpClient.sender.intent(mv, cam_yaw, is_crouching, jump_ct)
 
-	if jump_ct != null:
-		UdpClient.local_sim.tick(mv.x, mv.y, cam_yaw, is_crouching, jump_ct)
+	var seq: int = UdpClient.sender.intent_seq()
+	UdpClient.local_sim.tick(seq, mv.x, mv.y, cam_yaw, is_crouching, jump_ct)
