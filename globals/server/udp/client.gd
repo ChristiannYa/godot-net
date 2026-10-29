@@ -3,9 +3,8 @@ extends Node
 var _peer := PacketPeerUDP.new()
 var codec := UdpCodec.create()
 
-var _oneshot_ctr: UdpOneShotCounter = UdpOneShotCounter.new()
 var _rel := UdpReliable.new()
-var sender: UdpSender = UdpSender.new(_peer, _rel, _oneshot_ctr)
+var sender: UdpSender = UdpSender.new(_peer, _rel)
 var _rcvr := UdpRecvr.new(_peer, _rel)
 
 var state := UdpState.create()
@@ -26,7 +25,3 @@ func _process(_delta: float):
 		_rcvr.recv(pkt)
 
 	sender.due_rel()
-
-
-func reg_oneshot(field: String):
-	_oneshot_ctr.reg(field)

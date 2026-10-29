@@ -16,5 +16,5 @@ func reg(field: String):
 	entry["ct"] = (entry["ct"] + 1) & Bits.mask(entry["blen"])
 
 
-func ct(field: String) -> int:
+func ct(field: String) -> Variant:
 	return _cts[field]["ct"]
