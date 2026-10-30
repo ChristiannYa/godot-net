@@ -8,9 +8,10 @@ var sender: UdpSender = UdpSender.new(_peer, _rel)
 var _rcvr := UdpRecvr.new(_peer, _rel)
 
 var state := UdpState.create()
-var players := state.players()  # every call to `state.players()` crosses rust
 
-var local_sim := UdpLocalSim.create()
+# every call crosses rust, so we call it once here
+var players := state.players()
+var locsim := state.locsim()
 
 
 func _ready():

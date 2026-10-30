@@ -39,4 +39,4 @@ func _handle_intent_send():
 	UdpClient.sender.intent(mv, cam_yaw, is_crouching, jump_ct)
 
 	var seq: int = UdpClient.sender.intent_seq()
-	UdpClient.local_sim.tick(seq, mv.x, mv.y, cam_yaw, is_crouching, jump_ct)
+	UdpClient.locsim.tick(seq, mv.x, mv.y, cam_yaw, is_crouching, jump_ct)
